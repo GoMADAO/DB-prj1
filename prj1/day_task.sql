@@ -1,0 +1,10 @@
+Insert into day_task (task_id, plan_id,status,weight,task_content,spent_time) values (1,1,60,20,'Finish the first problem and read Chapter 2 of the textbook',3);
+Insert into day_task (task_id, plan_id,status,weight,task_content,spent_time) values (2,2,61,5,'Read the 3rd chapter in the textbook',0.5);
+Insert into day_task (task_id, plan_id,status,weight,task_content,spent_time) values (3,3,60,30,'Build up the SQLPlus environment in Windows and Mac',1);
+Insert into day_task (task_id, plan_id,status,weight,task_content,spent_time) values (4,3,60,30,'Create all the tables',2);
+Insert into day_task (task_id, plan_id,status,weight,task_content,spent_time) values (5,4,60,5,'Have the first group meeting',1);
+Insert into day_task (task_id, plan_id,status,weight,task_content,spent_time) values (6,4,60,2,'Compe up with a team name',0.5);
+Insert into day_task (task_id, plan_id,status,weight,task_content,spent_time) values (7,5,61,30,'Read through all slides',3);
+Insert into day_task (task_id, plan_id,status,weight,task_content,spent_time) values (8,5,60,25,'Finished the first programming question',2);
+Insert into day_task (task_id, plan_id,status,weight,task_content,spent_time) values (9,10,60,10,'Build up the development environment',1);
+Insert into day_task (task_id, plan_id,status,weight,task_content,spent_time) values (10,10,60,30,'Read papers solving the problem',3);

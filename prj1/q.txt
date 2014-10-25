@@ -1,0 +1,22 @@
+/*Select c.course_name,f.name as TA_NAME, f.office_hour, f.office_location
+from student s
+join reg_for r
+  on s.student_id=r.student_id
+join course c
+  on c.course_id = r.course_id
+join assists a
+  on r.course_id = a.course_id
+join staff f
+  on f.staff_id=a.staff_id
+where s.student_id = 'mg3534';
+*/
+
+Select c.course_name, i.due_date --sysdate - (to_date(i.due_date,'dd-mm-yy'))
+from student s
+join reg_for r
+  on s.student_id = r.student_id
+join course c
+  on c.course_id = r.course_id
+join is_assn i
+  on i.course_id = r.course_id
+where s.student_id = 'mg3534';

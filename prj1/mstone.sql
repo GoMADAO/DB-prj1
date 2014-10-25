@@ -1,0 +1,10 @@
+insert into mstone (milestone_id,plan_id,times_of_modif,milestone_desc,weight,status,deadline) values (1,1,0,'MilestoneDescTest',30,62,sysdate);
+insert into mstone (milestone_id,plan_id,times_of_modif,milestone_desc,weight,status,deadline) values (2,1,0,'MilestoneDescTest',40,63,sysdate-1);
+insert into mstone (milestone_id,plan_id,times_of_modif,milestone_desc,weight,status,deadline) values (3,1,0,'MilestoneDescTest',30,62,sysdate+1);
+insert into mstone (milestone_id,plan_id,times_of_modif,milestone_desc,weight,status,deadline) values (4,6,1,'MilestoneDescTest',50,63,sysdate-2);
+insert into mstone (milestone_id,plan_id,times_of_modif,milestone_desc,weight,status,deadline) values (5,6,0,'MilestoneDescTest',50,62,sysdate-2);
+insert into mstone (milestone_id,plan_id,times_of_modif,milestone_desc,weight,status,deadline) values (6,2,0,'MilestoneDescTest',20,62,sysdate);
+insert into mstone (milestone_id,plan_id,times_of_modif,milestone_desc,weight,status,deadline) values (7,2,2,'MilestoneDescTest',50,62,sysdate-1);
+insert into mstone (milestone_id,plan_id,times_of_modif,milestone_desc,weight,status,deadline) values (8,2,1,'MilestoneDescTest',30,62,sysdate+3);
+insert into mstone (milestone_id,plan_id,times_of_modif,milestone_desc,weight,status,deadline) values (9,3,1,'MilestoneDescTest',60,62,sysdate);
+insert into mstone (milestone_id,plan_id,times_of_modif,milestone_desc,weight,status,deadline) values (10,3,1,'MilestoneDescTest',40,62,sysdate);

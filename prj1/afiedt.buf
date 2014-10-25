@@ -1,0 +1,11 @@
+create or replace trigger valid_assn_date
+before insert on is_assn
+--for each row --when(:new.due_date < sysdate)
+begin
+	if :new.release_date < sysdate
+	then
+	dbms_output.put_line('first trigger');
+	RAISE_APPLICATION_ERROR(-20001,'release_date denied');
+	end if;
+end;
+/

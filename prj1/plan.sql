@@ -1,0 +1,10 @@
+Insert into plan (plan_id,start_date,end_date) values (1,to_date('13-10-14','dd-mm-yy'),to_date('20-10-14','dd-mm-yy'));
+Insert into plan (plan_id,start_date,end_date) values (2,to_date('20-10-14','dd-mm-yy'),to_date('20-11-14','dd-mm-yy'));
+Insert into plan (plan_id,start_date,end_date) values (3,to_date('08-10-14','dd-mm-yy'),to_date('28-10-14','dd-mm-yy'));
+Insert into plan (plan_id,start_date,end_date) values (4,to_date('16-10-14','dd-mm-yy'),to_date('17-10-14','dd-mm-yy'));
+Insert into plan (plan_id,start_date,end_date) values (5,to_date('20-10-14','dd-mm-yy'),to_date('20-11-14','dd-mm-yy'));
+Insert into plan (plan_id,start_date,end_date) values (6,to_date('01-10-14','dd-mm-yy'),to_date('04-10-14','dd-mm-yy'));
+Insert into plan (plan_id,start_date,end_date) values (7,to_date('13-10-14','dd-mm-yy'),to_date('29-10-14','dd-mm-yy'));
+Insert into plan (plan_id,start_date,end_date) values (8,to_date('29-10-14','dd-mm-yy'),to_date('06-11-14','dd-mm-yy'));
+Insert into plan (plan_id,start_date,end_date) values (9,to_date('10-10-14','dd-mm-yy'),to_date('01-11-14','dd-mm-yy'));
+Insert into plan (plan_id,start_date,end_date) values (10,to_date('23-10-14','dd-mm-yy'),to_date('10-11-14','dd-mm-yy'));
