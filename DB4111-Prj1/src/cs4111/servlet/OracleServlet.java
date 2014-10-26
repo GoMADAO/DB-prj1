@@ -1,4 +1,4 @@
-package cs4111;
+package cs4111.servlet;
 import java.io.*;
 import javax.servlet.http.*;
 import javax.servlet.*;
