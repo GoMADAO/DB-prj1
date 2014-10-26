@@ -26,5 +26,6 @@ To do list:
 2. Trigger Creation
   Tasks/ Milestone
   Milestone: Update Deadline, times of modification ++;
+  Insert Plan: add a Milestone of plan end date
 
 
