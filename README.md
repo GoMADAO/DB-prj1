@@ -1,4 +1,22 @@
 DB-prj1
 =======
+Members:
 yf2338
-HW
+mg3534
+
+Tasks:
+1. Project initialization
+2. Coding
+3. Testing (Firefox)
+4. Designing example
+
+
+To do list:
+10.26
+1. Upload project files: project proposal, ddl, sql ...
+2. Restore data in new DBS
+3. Review ER model, mark changes
+4. Design the prototype of Project, mark changes of ER model
+5. Fix schema and modify data
+6. Assign tasks
+7. Beign with the first login page (practice using jsp, javabean and servlet)
