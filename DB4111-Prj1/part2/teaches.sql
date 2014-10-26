@@ -1,0 +1,10 @@
+Insert into teaches (course_id, staff_id) values(4231,1);
+Insert into teaches (course_id, staff_id) values(4111,2);
+Insert into teaches (course_id, staff_id) values(4170,3);
+Insert into teaches (course_id, staff_id) values(4731,4);
+Insert into teaches (course_id, staff_id) values(4118,5);
+Insert into teaches (course_id, staff_id) values(4167,6);
+Insert into teaches (course_id, staff_id) values(4772,7);
+Insert into teaches (course_id, staff_id) values(84119,8);
+Insert into teaches (course_id, staff_id) values(4252,9);
+Insert into teaches (course_id, staff_id) values(4701,10);
