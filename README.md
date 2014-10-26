@@ -20,3 +20,9 @@ To do list:
 5. Fix schema and modify data, mark triggers need to create
 6. Assign tasks
 7. Beign with the first login page (practice using jsp, javabean and servlet)
+ 
+1. Model Change
+  Tasks: +Date
+2. Trigger Creation
+  Tasks/ Milestone
+
