@@ -22,7 +22,8 @@ To do list:
 7. Beign with the first login page (practice using jsp, javabean and servlet)
  
 1. Model Change
-  Tasks: +Date
+  Tasks: + Date
+  Plan: + Turn on
 2. Trigger Creation
   Tasks/ Milestone
   Milestone: Update Deadline, times of modification ++;
