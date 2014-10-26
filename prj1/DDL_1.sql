@@ -78,7 +78,7 @@ CREATE TABLE DAY_TASK(
 	weight			INTEGER						NOT NULL,
 	task_content	VARCHAR2(200),
 	spent_time		INTEGER 		DEFAULT 0,
-	task_date		DATE			DEFAULT SYSDATE		NOT NULL,
+	task_date		DATE			DEFAULT SYSDATE		NOT NULL, --Not check >stdate <enddate, in order to store info that expire the enddate but not reach duedate
 	PRIMARY KEY (task_id),
 	CONSTRAINT WEIGHT_RANGE CHECK(weight <= 100 AND weight >= 0),
 	CONSTRAINT SPENT_MIN CHECK(spent_time >= 0),
