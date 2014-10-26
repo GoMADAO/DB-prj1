@@ -1,4 +1,4 @@
-package cs4111.servlet;
+package cs4111;
 import java.io.*;
 import javax.servlet.http.*;
 import javax.servlet.*;
@@ -14,13 +14,14 @@ public class OracleServlet extends HttpServlet {
 
                 response.setContentType("text/html");
                 PrintWriter out = response.getWriter();
+                //dsfdsfs
 
-                String dbUser = "mg3534"; // enter your username here
-                String dbPassword = "passw0rd"; // enter your password here
+                String dbUser = "scott"; // enter your username here
+                String dbPassword = "tiger"; // enter your password here
 
                 try {
                         OracleDataSource ods = new oracle.jdbc.pool.OracleDataSource();
-                        ods.setURL("jdbc:oracle:thin:@//w4111c.cs.columbia.edu:1521/ADB2");
+                        ods.setURL("jdbc:oracle:thin:@//w4111b.cs.columbia.edu:1521/ADB");
                         ods.setUser(dbUser);
                         ods.setPassword(dbPassword);
 
