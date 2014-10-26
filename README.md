@@ -23,7 +23,7 @@ To do list:
  
 1. Model Change
   Tasks: + Date
-  Plan: + Turn on
+  Plan: + Turn on (0-creating 1-ongoing 2-past)
 2. Trigger Creation
   Tasks/ Milestone
   Milestone: Update Deadline, times of modification ++;
