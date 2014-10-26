@@ -17,6 +17,6 @@ To do list:
 2. Restore data in new DBS
 3. Review ER model, mark changes
 4. Design the prototype of Project, mark changes of ER model
-5. Fix schema and modify data
+5. Fix schema and modify data, mark triggers need to create
 6. Assign tasks
 7. Beign with the first login page (practice using jsp, javabean and servlet)
