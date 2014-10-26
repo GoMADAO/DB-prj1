@@ -54,7 +54,9 @@ CREATE TABLE PLAN(
 	plan_id		INTEGER,
 	start_date	DATE		DEFAULT SYSDATE 	NOT NULL,
 	end_date	DATE					NOT NULL,
+	turn_on		INTEGER,
 	PRIMARY KEY (plan_id),
+	FOREIGN KEY (turn_on)	REFERENCES DICT(dic_id)
 	--CONSTRAINT END_MAX CHECK (end_date <= (select due_date from ASSIGN))
 	--CHECK NOT EXISTS (select plan_id 
 	--		 from COURSEWORK_PLAN
@@ -76,6 +78,7 @@ CREATE TABLE DAY_TASK(
 	weight			INTEGER						NOT NULL,
 	task_content	VARCHAR2(200),
 	spent_time		INTEGER 		DEFAULT 0,
+	task_date		DATE			DEFAULT SYSDATE		NOT NULL,
 	PRIMARY KEY (task_id),
 	CONSTRAINT WEIGHT_RANGE CHECK(weight <= 100 AND weight >= 0),
 	CONSTRAINT SPENT_MIN CHECK(spent_time >= 0),
