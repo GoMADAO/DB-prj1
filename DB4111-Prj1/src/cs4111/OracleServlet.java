@@ -16,12 +16,12 @@ public class OracleServlet extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 //dsfdsfs
 
-                String dbUser = "scott"; // enter your username here
-                String dbPassword = "tiger"; // enter your password here
+                String dbUser = "mg3534"; // enter your username here
+                String dbPassword = "passw0rd"; // enter your password here
 
                 try {
                         OracleDataSource ods = new oracle.jdbc.pool.OracleDataSource();
-                        ods.setURL("jdbc:oracle:thin:@//w4111b.cs.columbia.edu:1521/ADB");
+                        ods.setURL("jdbc:oracle:thin:@//w4111f.cs.columbia.edu:1521/ADB3");
                         ods.setUser(dbUser);
                         ods.setPassword(dbPassword);
 

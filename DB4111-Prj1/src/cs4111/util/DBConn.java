@@ -20,7 +20,7 @@ public class DBConn {
           	  OracleDataSource ods = new OracleDataSource();
           	  String dbUser = "mg3534"; // enter your username here
           	  String dbPassword = "passw0rd"; // enter your password here
-          	  ods.setURL("jdbc:oracle:thin:@//w4111c.cs.columbia.edu:1521/ADB2"); 
+          	  ods.setURL("jdbc:oracle:thin:@//w4111b.cs.columbia.edu:1521/ADB"); 
           	  ods.setUser(dbUser);
           	  ods.setPassword(dbPassword);
           	  conn = ods.getConnection();
