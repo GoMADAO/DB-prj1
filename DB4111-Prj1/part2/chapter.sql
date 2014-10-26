@@ -1,0 +1,10 @@
+Insert into chapter (course_id, chapter_title) values(4231,'1.Introduction');
+Insert into chapter (course_id, chapter_title) values(4231,'2.Sorting and Order Statistics');
+Insert into chapter (course_id, chapter_title) values(4231,'3.Data Structures');
+Insert into chapter (course_id, chapter_title) values(4231,'4.Advanced Design and Analysis Techniques');
+Insert into chapter (course_id, chapter_title) values(4111,'1.Overview');
+Insert into chapter (course_id, chapter_title) values(4111,'2.Introduction to Database Design');
+Insert into chapter (course_id, chapter_title) values(4111,'3.The Relational Model');
+Insert into chapter (course_id, chapter_title) values(4111,'4.Relational Algebra and Calculus');
+Insert into chapter (course_id, chapter_title) values(4111,'5.SQL');
+Insert into chapter (course_id, chapter_title) values(4111,'6.Database Application Development');

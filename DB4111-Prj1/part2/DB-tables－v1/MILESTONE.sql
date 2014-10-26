@@ -1,0 +1,13 @@
+CREATE TABLE MILESTONE(
+	milestone_id	INTEGER,
+	plan_id			INTEGER			NOT NULL,
+	times_of_modif	INTEGER,
+	milestone_desc	VARCHAR2(200),
+	weight			INTEGER			NOT NULL,
+	PRIMARY KEY (milestone_id),
+	CONSTRAINT MODIF_MIN CHECK (times_of_modif>=0),
+	CONSTRAINT MS_WEIGHT_MAX CHECK(weight <= 100),
+	CONSTRAINT MS_WEIGHT_MIN CHECK(weight >= 0),
+	FOREIGN KEY (plan_id) REFERENCES COURSEWORK_PLAN (plan_id)
+			ON DELETE CASCADE
+);

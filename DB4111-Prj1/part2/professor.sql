@@ -1,0 +1,10 @@
+Insert into prof values(1,1,'Algorithms, complexity theory, combinatorial optimization, databases, testing and verification, Computer Science');
+Insert into prof values(2,2,'Database systems, query processing and optimization, architecture-sensitive software, genetics, Computer Science');
+Insert into prof values(3,3,'Human-computer interaction, augmented reality and virtual environments, 3D user interfaces, knowledge-based design of graphics and multimedia, mobile and wearable computing, computer games, and information visualization');
+Insert into prof values(4,4,'Computer Vision, Computational Imaging, Computer Graphics, Robotics, Human-Computer Interfaces, Computer Science');
+Insert into prof values(5,5,'Software systems across a broad range of areas, including operating systems, virtualization, thin-client computing, cloud computing, mobile computing, multimedia, web technologies, and performance evaluation');
+Insert into prof values(6,6,'Computer graphics and scientific computing, computational mechanics, mathematical foundations of graphics, discrete differential geometry, computer science');
+Insert into prof values(7,7,'Algorithmic statistics and machine learning');
+Insert into prof values(8,8,'Networking, with particular attention to net neutrality and the economics of the Internet; modeling and performance evaluation, information theory');
+Insert into prof values(9,9,'computational learning theory, but I also have strong interests in computational complexity theory and the role of randomness in computation.');
+Insert into prof values(10,10,'Natural Language Processing, Text Summarization ');

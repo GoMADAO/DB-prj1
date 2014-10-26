@@ -1,0 +1,57 @@
+Mingfei Ge, UNI: mg3534
+Yuan Feng, UNI: yf2338
+==============================================================
+QUERY 1:
+select weight
+from student s
+join reg_for r
+on s.student_id = r.student_id
+join course c
+on r.course_id = c.course_id
+join is_assn assn
+on c.course_id = assn.course_id
+join is_sche sch
+on assn.coursework_id = sch.coursework_id
+join plan p
+on sch.plan_id = p.plan_id
+join mstone m
+on p.plan_id = m.plan_id
+where s.student_id = 'mg3534' and r.course_id = '4231' and assn.coursework_id = 1;
+
+EXPLANATION:
+This query checks the milestone progress distribution of the coursework plan of a designated student (with ID: mg3534) for a coursework (with ID: 1) in a spicific course (with ID: 4231). The Query is responsed by "30 40 30", which means that for this coursework, the student planned 3 parts, each takes 30, 40 and 40 percentages.
+
+===============================================================
+QUERY 2:
+Select c.course_name,f.name as TA_NAME, f.office_hour, f.office_location
+from student s
+join reg_for r
+on s.student_id=r.student_id
+join course c
+on c.course_id = r.course_id
+join assists a
+on r.course_id = a.course_id
+join staff f
+on f.staff_id=a.staff_id
+where s.student_id = 'mg3534';
+
+EXPLANATION:
+This query gives TA office hour information for the courses registered by a designated student (with ID: mg3534), including all the TAs' name for different courses, their office hours and office locations.
+
+=================================================================
+QUERY3:
+Select c.course_name, i.name,
+(case when i.due_date+0 > sysdate
+then floor(cast(i.due_date as date) -sysdate)
+end) left_date
+from student s
+join reg_for r
+on s.student_id = r.student_id
+join course c
+on c.course_id = r.course_id
+join is_assn i
+on i.course_id = r.course_id
+where s.student_id = 'mg3534';
+
+EXPLANATION:
+This query checks the remaining time for the courseworks of a designated student (with ID: mg3534). Respond to this query lists amount of days remained for each coursework of this student, which shows the management functionality of this courswork management system.

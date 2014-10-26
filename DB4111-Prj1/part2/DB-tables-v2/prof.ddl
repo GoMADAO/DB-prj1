@@ -1,0 +1,9 @@
+CREATE TABLE PROF(
+	staff_id		INTEGER,
+	professor_id	INTEGER				NOT NULL,
+	concentration	VARCHAR2(400),
+	PRIMARY KEY (staff_id),
+	FOREIGN KEY (staff_id)	REFERENCES STAFF (staff_id)
+			ON DELETE CASCADE
+			INITIALLY DEFERRED DEFERRABLE
+);
