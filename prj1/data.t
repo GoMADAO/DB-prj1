@@ -63,4 +63,4 @@ Insert into dict(dic_id, type,value,key) values(62,'ms_status','normal',0);
 Insert into dict(dic_id, type,value,key) values(63,'ms_status','delay',1);
 Insert into dict(dic_id, type,value,key) values(64,'turn_on','init',0);
 Insert into dict(dic_id, type,value,key) values(65,'turn_on','ongoing',1);
---Insert into dict(dic_id, type,value,key) values(66,'turn_on','past',2);  --discuss
+--Insert into dict(dic_id, type,value,key) values(66,'turn_on','past',2);  --not use: discuss
