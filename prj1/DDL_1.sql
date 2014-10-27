@@ -74,7 +74,7 @@ CREATE TABLE IS_SCHE(
 CREATE TABLE DAY_TASK(
 	task_id			INTEGER,
 	plan_id			INTEGER						NOT NULL,
-	status			INTEGER			DEFAULT 0	NOT NULL, --0, normal, 1, delayed, 2, in advance
+	status			INTEGER			DEFAULT 60	NOT NULL, --0, normal, 1, delayed, 2, in advance
 	weight			INTEGER						NOT NULL,
 	task_content	VARCHAR2(200),
 	spent_time		INTEGER 		DEFAULT 0,
@@ -93,7 +93,7 @@ CREATE TABLE MSTONE(
 	times_of_modif	INTEGER		DEFAULT 0 	NOT NULL,
 	milestone_desc	VARCHAR2(200),
 	weight		INTEGER				NOT NULL,
-	status		INTEGER		DEFAULT 0	NOT NULL,  --0, normal, 1, delayed, 
+	status		INTEGER		DEFAULT 62	NOT NULL,  --0, normal, 1, delayed, 
 	deadline	DATE				NOT NULL,
 	PRIMARY KEY (milestone_id),
 	CONSTRAINT MODIF_MIN CHECK (times_of_modif>=0),
