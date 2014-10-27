@@ -20,7 +20,7 @@ public class DBConn {
           	  OracleDataSource ods = new OracleDataSource();
           	  String dbUser = "mg3534"; // enter your username here
           	  String dbPassword = "passw0rd"; // enter your password here
-          	  ods.setURL("jdbc:oracle:thin:@//w4111b.cs.columbia.edu:1521/ADB"); 
+          	  ods.setURL("jdbc:oracle:thin:@//w4111c.cs.columbia.edu:1521/ADB"); 
           	  ods.setUser(dbUser);
           	  ods.setPassword(dbPassword);
           	  conn = ods.getConnection();
@@ -30,7 +30,7 @@ public class DBConn {
 //              password="sa";  
 //              Class.forName(driver);     
 //              conn = DriverManager.getConnection(url,user,password);  
-//              System.out.println("-------连接成功------");     
+              System.out.println("-------Connect Succeed------");     
           } catch(SQLException sqlexception) {     
               System.err.println("db.getconn(): " + sqlexception.getMessage());     
           }     
@@ -44,7 +44,7 @@ public class DBConn {
            public void doInsert(String sql) {     
             try {     
                 stmt = conn.createStatement();     
-                int i = stmt.executeUpdate(sql);     
+                int i = stmt.executeUpdate(sql); 
             } catch(SQLException sqlexception) {     
                 System.err.println("db.executeInset:" + sqlexception.getMessage());     
             }finally{     
@@ -83,7 +83,7 @@ public class DBConn {
             	
             	stmt = conn.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);       
                 rs = stmt.executeQuery(sql);   
-                System.out.println("取得结果集");  
+                System.out.println("Return Query Result");  
             } catch(SQLException sqlexception) {     
                 System.err.println("db.executeQuery: " + sqlexception.getMessage());     
             }     
@@ -132,9 +132,26 @@ public class DBConn {
          }     
         //测试类     
        public static void main(String []args){  
-           DBConn db=new DBConn();  
-           db.getConn();  
+          DBConn db=new DBConn();  
+          db.getConn();  
+          String s = new String();
+          s="Insert into student (student_id,name,enroll_interval,student_type) values('12345','Test',6,1)";
+          db.doInsert(s);
           ResultSet rs=db.doSelect("select * from student");  
+          try {  
+              while(rs.next()){  
+                  System.out.println(rs.getString(1));  
+                  System.out.println(rs.getInt(3));  
+                    
+              }  
+          } catch (SQLException e) {  
+              // TODO Auto-generated catch block  
+              e.printStackTrace();  
+          }  
+          System.out.println("===========================");
+          s="delete from student where student_id = '12345'";
+          db.doDelete(s);
+          rs=db.doSelect("select * from student");  
           try {  
               while(rs.next()){  
                   System.out.println(rs.getString(1));  
