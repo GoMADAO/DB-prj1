@@ -1,15 +1,20 @@
 package cs4111;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import cs4111.bean.CheckStu;  
 import cs4111.bean.Stubean;
+import cs4111.util.DBConn;
 /**
  * Servlet implementation class LoginServlet
  */
@@ -53,7 +58,34 @@ public class LoginServlet extends HttpServlet {
           
         String forward;  
         if(bool){  
+        	ResultSet rs = null;
+        	DBConn conn =new DBConn();
+        	String query = new String();
+        	query = "SELECT name FROM STUDENT WHERE student_id='"+stuname+"'";
+        	rs = conn.doSelect(query);
+        	String StuName = new String();
+        	try{
+        	while(rs.next()){
+        		StuName = rs.getString("name");
+        	}
+        	
+        	}catch (SQLException e) {
+        		e.printStackTrace();
+        	}
+        	
+    			try {
+    				rs.close();
+					conn.close();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        	
+        	
+        	stu.setStuName(StuName);
+        	
             forward="success.jsp";  
+            request.setAttribute("stu",stu);
               
         }else{  
             forward="error.jsp";  
