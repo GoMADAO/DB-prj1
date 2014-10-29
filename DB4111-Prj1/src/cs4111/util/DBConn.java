@@ -116,37 +116,37 @@ public class DBConn {
 	      conn = null;     
 	    }     
 	  }     
-	  //测试类  
-	  public static void main(String []args){  
-          DBConn db=new DBConn();  
-          String s = new String();
-          s="Insert into student (student_id,name,enroll_interval,student_type) values('12345','Test',6,1)";
-          db.doInsert(s);
-          ResultSet rs=db.doSelect("select * from student");  
-          try {  
-              while(rs.next()){  
-                  System.out.println(rs.getString(1));  
-                  System.out.println(rs.getInt(3));  
-                    
-              }  
-          } catch (SQLException e) {  
-              // TODO Auto-generated catch block  
-              e.printStackTrace();  
-          }  
-          System.out.println("===========================");
-          s="delete from student where student_id = '12345'";
-          db.doDelete(s);
-          rs=db.doSelect("select * from student");  
-          try {  
-              while(rs.next()){  
-                  System.out.println(rs.getString(1));  
-                  System.out.println(rs.getInt(3));  
-                    
-              }  
-          } catch (SQLException e) {  
-              // TODO Auto-generated catch block  
-              e.printStackTrace();  
-          }  
-       }  
-	  
+//	  //测试类  
+//	  public static void main(String []args){  
+//          DBConn db=new DBConn();  
+//          String s = new String();
+//          s="Insert into student (student_id,name,enroll_interval,student_type) values('12345','Test',6,1)";
+//          db.doInsert(s);
+//          ResultSet rs=db.doSelect("select * from student");  
+//          try {  
+//              while(rs.next()){  
+//                  System.out.println(rs.getString(1));  
+//                  System.out.println(rs.getInt(3));  
+//                    
+//              }  
+//          } catch (SQLException e) {  
+//              // TODO Auto-generated catch block  
+//              e.printStackTrace();  
+//          }  
+//          System.out.println("===========================");
+//          s="delete from student where student_id = '12345'";
+//          db.doDelete(s);
+//          rs=db.doSelect("select * from student");  
+//          try {  
+//              while(rs.next()){  
+//                  System.out.println(rs.getString(1));  
+//                  System.out.println(rs.getInt(3));  
+//                    
+//              }  
+//          } catch (SQLException e) {  
+//              // TODO Auto-generated catch block  
+//              e.printStackTrace();  
+//          }  
+//       }  
+//	  
 }
