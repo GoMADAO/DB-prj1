@@ -1,19 +1,19 @@
 package cs4111.bean;
 
 public class Stubean {
-	private String Username;
-	private String Password;
+	private String username;
+	private String password;
 	
 	public void setName(String name){
-		this.Username = name;
+		this.username = name;
 	}
 	public void setPwd(String pwd){
-		this.Password = pwd;
+		this.password = pwd;
 	}
 	public String getName(){
-		return this.Username;
+		return this.username;
 	}
 	public String getPwd(){
-		return this.Password;
+		return this.password;
 	}
 }
