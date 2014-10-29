@@ -5,10 +5,55 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Login Page</title>  
+<style type="text/css">  
+body{  
+ color : #000 ;  
+ font-size : 12px ;  
+  
+ margin : 0px auto ;  
+ }  
+</style>
+<script type="text/javascript">  
+    function check(form){  
+    //取得form1中Username的值 并判断是否为空  
+        if(document.forms.form1.username.value==""){   
+            alert("pls input username");  
+            //将输入焦点定位到没有输入的地方  
+            document.forms.form1.username.focus(); 
+            return false;  
+        }  
+                if(document.forms.form1.password.value==""){  
+            alert("pls input password");  
+            document.forms.form1.password.focus();  
+            return false;  
+        }  
+    }  
+  
+</script>
 </head>
 <body>
-
-dewfw
+<form action="LoginServlet" method="post" name="form1">  
+      
+      
+<table border="1" cellspacing="1" cellpadding="1"  bordercolor="silver" align="center">  
+   <tr>  
+      <td colspan="2" align="center" bgcolor="#e8e8e8">Login</td>  
+   </tr>  
+   <tr>  
+      <td>Username：</td>  
+      <td><input type="text" name="username"/></td>  
+   </tr>  
+   <tr>  
+      <td>Password：</td>  
+      <td><input type="password" name="password"/></td>  
+   </tr>  
+   <tr>  
+      <!-- onclick="return check(this) 调用上面的Script进行验证 -->  
+      <td><input type="submit" name="submit" onclick="return check(this);"/></td>
+   </tr>  
+</table>  
+  
+</form>
 </body>
 </html>
