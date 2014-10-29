@@ -25,7 +25,7 @@ public class TestConn {
                 Statement s = conn.createStatement();
 
                 query = "select * from student";
-
+// test
                  ResultSet r = s.executeQuery(query);
                  while(r.next()){
                    System.out.println("Today's Date: "+r.getString(1)+" ");
