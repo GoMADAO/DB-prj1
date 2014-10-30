@@ -1,20 +1,18 @@
 package cs4111;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import cs4111.bean.CheckStu;  
-import cs4111.bean.Stubean;
-import cs4111.util.DBConn;
+import cs4111.bean.CourseReqBean;
+import cs4111.bean.StuCheckBean;  
+import cs4111.bean.Student;
+import cs4111.bean.Course;
 /**
  * Servlet implementation class LoginServlet
  */
@@ -40,52 +38,33 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//设置HTTP响应的文档类型,此处为Text/html,如果更改为application\msword则设置为word文档格式  
+		// TODO Auto-generated method stub 
         response.setContentType("text/html");  
-        //设置响应所采用的编码方式  
-        response.setCharacterEncoding("GB18030");  
-        //取得参数username的值  
+        response.setCharacterEncoding("GB18030");   
         String stuname=request.getParameter("username");  
         String passwd=request.getParameter("password");  
           
           
-        Stubean stu=new Stubean();
+        Student stu=new Student();
         stu.setName(stuname);  
         stu.setPwd(passwd);  
-        CheckStu ckstu=new CheckStu();  
+        StuCheckBean ckstu=new StuCheckBean();  
         boolean bool=ckstu.checkStu(stu);  
           
         String forward;  
         if(bool){  
-        	ResultSet rs = null;
-        	DBConn conn =new DBConn();
-        	String query = new String();
-        	query = "SELECT name FROM STUDENT WHERE student_id='"+stuname+"'";
-        	rs = conn.doSelect(query);
-        	String StuName = new String();
-        	try{
-        	while(rs.next()){
-        		StuName = rs.getString("name");
-        	}
+        	//student name
+        	ckstu.stuName(stu);
         	
-        	}catch (SQLException e) {
-        		e.printStackTrace();
-        	}
+        	//course info
+        	Course course = new Course();
+        	CourseReqBean courseRB = new CourseReqBean();
+        	courseRB.courseReqBean(stuname, course);
         	
-    			try {
-    				rs.close();
-					conn.close();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-        	
-        	
-        	stu.setStuName(StuName);
-        	
+        	//forward to JSP
             forward="success.jsp";  
             request.setAttribute("stu",stu);
+            request.setAttribute("course",course);
               
         }else{  
             forward="error.jsp";  

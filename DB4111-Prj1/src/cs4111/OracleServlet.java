@@ -21,7 +21,7 @@ public class OracleServlet extends HttpServlet {
 
                 try {
                         OracleDataSource ods = new oracle.jdbc.pool.OracleDataSource();
-                        ods.setURL("jdbc:oracle:thin:@//w4111f.cs.columbia.edu:1521/ADB3");
+                        ods.setURL("jdbc:oracle:thin:@//w4111c.cs.columbia.edu:1521/ADB");
                         ods.setUser(dbUser);
                         ods.setPassword(dbPassword);
 
@@ -30,11 +30,11 @@ public class OracleServlet extends HttpServlet {
                         String query = new String();
                         Statement s = conn.createStatement();
 
-                        query = "select sysdate from dual";
+                        query = "select course_id from reg_for where student_id = 'mg3534'";
 
                          ResultSet r = s.executeQuery(query);
                          while(r.next()){
-                           out.println("Today's Date: "+r.getString(1)+" ");
+                           out.println("course_id: "+r.getString("course_id")+" ");
                          }
                         r.close();
                         s.close();

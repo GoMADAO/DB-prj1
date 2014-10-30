@@ -1,6 +1,6 @@
 package cs4111.bean;
 
-public class Stubean {
+public class Student {
 	private String username;
 	private String password;
 	private String name;

@@ -35,9 +35,9 @@ public class DBPoolConn {
                       catch (SQLException e)  
                       {  
                          System.out.print("=================================");   
-                         System.out.print("链接数据库失败！");   
+                         System.out.print("Failed to connect to Database！");   
                          System.out.print("=================================");   
-                         System.out.print("错误信息：");  
+                         System.out.print("Error Message：");  
                          e.printStackTrace();  
                          return null;  
                       }     
@@ -62,9 +62,9 @@ public class DBPoolConn {
          catch (SQLException e)  
          {  
              System.out.print("=================================");   
-             System.out.print("获得数据库连接失败！");   
+             System.out.print("Failed to connect to Database！");   
              System.out.print("=================================");   
-             System.out.print("错误信息：");  
+             System.out.print("Error Message：");  
              e.printStackTrace();  
              return null;  
          }  
