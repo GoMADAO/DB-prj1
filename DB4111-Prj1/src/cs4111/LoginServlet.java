@@ -2,13 +2,13 @@ package cs4111;
 
 import java.io.IOException;
 
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cs4111.bean.CourseList;
 import cs4111.bean.CourseReqBean;
 import cs4111.bean.StuCheckBean;  
 import cs4111.bean.Student;
@@ -57,14 +57,15 @@ public class LoginServlet extends HttpServlet {
         	ckstu.stuName(stu);
         	
         	//course info
-        	Course course = new Course();
+        	//--Course course = new Course();
+        	CourseList cl =new CourseList();
         	CourseReqBean courseRB = new CourseReqBean();
-        	courseRB.courseReqBean(stuname, course);
+        	courseRB.courseReqBean(stuname, cl);
         	
         	//forward to JSP
             forward="success.jsp";  
             request.setAttribute("stu",stu);
-            request.setAttribute("course",course);
+            request.setAttribute("courselist",cl);
               
         }else{  
             forward="error.jsp";  

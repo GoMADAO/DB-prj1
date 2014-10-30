@@ -8,10 +8,15 @@ import cs4111.util.DBConn;
 
 public class CourseReqBean {
 	
-	public void courseReqBean(String stuname, Course course){
-	ArrayList<Integer> IDArr= new ArrayList<Integer>();
-	ArrayList<String> NameArr= new ArrayList<String>();
-	ArrayList<String> DescArr= new ArrayList<String>();
+	public void courseReqBean(String stuname, CourseList course){
+//	ArrayList<Integer> IDArr= new ArrayList<Integer>();
+//	ArrayList<String> NameArr= new ArrayList<String>();
+//	ArrayList<String> DescArr= new ArrayList<String>();
+	/**
+	 * Modification 
+	 */
+	ArrayList<Cou> courseList = new ArrayList<Cou>();
+	
 	ResultSet rs = null;
 	DBConn conn =new DBConn();
 	String query = new String();
@@ -19,9 +24,18 @@ public class CourseReqBean {
 	rs = conn.doSelect(query);
 	try {
 		while(rs.next()){
-		IDArr.add(Integer.parseInt(rs.getString("course_id")));
-		NameArr.add(rs.getString("course_name"));
-		DescArr.add(rs.getString("course_desc"));
+//		IDArr.add(Integer.parseInt(rs.getString("course_id")));
+//		NameArr.add(rs.getString("course_name"));
+//		DescArr.add(rs.getString("course_desc"));
+		/**
+		 * Modi
+		 */
+		Cou c=new Cou();
+		c.setCid(Integer.parseInt(rs.getString("course_id")));
+		c.setCname(rs.getString("course_name"));
+		c.setCdesc(rs.getString("course_desc"));
+		courseList.add(c);
+		
 		}
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -39,8 +53,13 @@ public class CourseReqBean {
 	catch (Exception e) {
 		e.printStackTrace();
 	}
-	course.setID(IDArr);
-	course.setName(NameArr);
-	course.setDesc(DescArr);
+	/**
+	 * 
+	 * Modi
+	 */
+//	course.setID(IDArr);
+//	course.setName(NameArr);
+//	course.setDesc(DescArr);
+	course.setClist(courseList);
 	}
 }
