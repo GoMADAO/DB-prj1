@@ -11,7 +11,7 @@ public class StuCheckBean {
 		if(!stu.getName().equals("") || stu.getName()!=null){
 			ResultSet rs = null;
 			DBConn db =new DBConn();
-			String sql = new String("SELECT * FROM STUDENT WHERE STUDENT_ID ='"+stu.getName()+"'");
+			String sql = new String("SELECT password FROM STUDENT WHERE STUDENT_ID ='"+stu.getName()+"'");
 			rs = db.doSelect(sql);
 			try {
 				if(rs.next()){

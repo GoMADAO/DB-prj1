@@ -16,10 +16,9 @@ body{
 </style>
 <script type="text/javascript">  
     function check(form){  
-    //取得form1中Username的值 并判断是否为空  
         if(document.forms.form1.username.value==""){   
             alert("pls input username");  
-            //将输入焦点定位到没有输入的地方  
+            //put focus back  
             document.forms.form1.username.focus(); 
             return false;  
         }  

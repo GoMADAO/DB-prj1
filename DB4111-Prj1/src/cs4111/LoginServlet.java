@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub 
         response.setContentType("text/html");  
-        response.setCharacterEncoding("GB18030");   
+        response.setCharacterEncoding("UTF-8");   
         String stuname=request.getParameter("username");  
         String passwd=request.getParameter("password");  
           
