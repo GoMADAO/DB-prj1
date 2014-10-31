@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cs4111.bean.Course;
+import cs4111.bean.CourseList;
+import cs4111.bean.CourseReqBean;
 import cs4111.bean.TAassistsList;
 import cs4111.bean.TAassistsReqBean;
 
@@ -36,7 +38,6 @@ public class CourseServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8"); 
         
         String crsid=(String)request.getParameter("courseid");
-        request.setAttribute("crsid", crsid);
         
         TAassistsList ta = new TAassistsList();
         TAassistsReqBean assists = new TAassistsReqBean();

@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
         	courseRB.courseReqBean(stuname, cl);
         	
         	//forward to JSP
-            forward="success.jsp";  
+            forward="MainPage.jsp";  
             request.setAttribute("stu",stu);
             request.setAttribute("courselist",cl);
               

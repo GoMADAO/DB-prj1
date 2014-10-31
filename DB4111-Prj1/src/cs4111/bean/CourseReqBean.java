@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import cs4111.util.DBConn;
 
 public class CourseReqBean {
-	
 	public void courseReqBean(String stuname, CourseList course){
 	ArrayList<Course> courseList = new ArrayList<Course>();
 	
