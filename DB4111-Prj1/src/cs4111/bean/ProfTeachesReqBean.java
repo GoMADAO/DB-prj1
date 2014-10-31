@@ -13,9 +13,9 @@ public class ProfTeachesReqBean {
 		DBConn conn =new DBConn();
 		String query = new String();
 		
-		query ="SELECT s.name, s.office_hour, s.office_location, p.professor_id, p.concentration, c.course_name "
+		query ="SELECT s.staff_id, s.name, s.office_hour, s.office_location, p.professor_id, p.concentration, c.course_name "
 				+ "FROM teaches t, staff s, prof p, course c WHERE t.course_id ="
-				+crsid+" AND t.staff_id = s.staff_id AND t.staff_id = p.staff_id AND c.coruse_id ="+crsid;
+				+crsid+" AND t.staff_id = s.staff_id AND t.staff_id = p.staff_id AND c.course_id ="+crsid;
 		rs = conn.doSelect(query);
 		try {
 			while(rs.next()){

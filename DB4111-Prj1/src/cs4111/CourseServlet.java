@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import cs4111.bean.Course;
 import cs4111.bean.CourseList;
 import cs4111.bean.CourseReqBean;
+import cs4111.bean.ProfTeachesList;
+import cs4111.bean.ProfTeachesReqBean;
 import cs4111.bean.TAassistsList;
 import cs4111.bean.TAassistsReqBean;
 
@@ -43,8 +45,13 @@ public class CourseServlet extends HttpServlet {
         TAassistsReqBean assists = new TAassistsReqBean();
         assists.assists(crsid, ta);
         
+        ProfTeachesList prof = new ProfTeachesList();
+        ProfTeachesReqBean teaches = new ProfTeachesReqBean();
+        teaches.teaches(crsid, prof);
+        
         String forward = new String("Course.jsp");
         request.setAttribute("ta",ta);
+        request.setAttribute("prof",prof);
         RequestDispatcher rd=request.getRequestDispatcher(forward);
         rd.forward(request,response);
 	}
