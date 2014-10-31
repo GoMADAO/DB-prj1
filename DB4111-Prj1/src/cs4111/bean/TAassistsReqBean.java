@@ -7,21 +7,21 @@ import java.util.ArrayList;
 import cs4111.util.DBConn;
 
 public class TAassistsReqBean {
-	public void assists(String crsid, TAassists ta){
-		ArrayList<Integer> staffIDArr= new ArrayList<Integer>();
-		ArrayList<Integer> taIDArr= new ArrayList<Integer>();
-		ArrayList<String> taNameArr= new ArrayList<String>();
+	public void assists(String crsid, TAassistsList ta){
+		ArrayList<TAassists> taList = new ArrayList<TAassists>();
 		ResultSet rs = null;
 		DBConn conn =new DBConn();
 		String query = new String();
 		
-		query = "SELECT a.staff_id, t.ta_id, s.name FROM ta t, assists a, staff s WHERE a.course_id ="+crsid+" and a.staff_id = t.staff_id and a.staff_id = s.staff_id";
+		query = "SELECT a.staff_id, t.ta_id, s.name FROM ta t, assists a, staff s WHERE a.course_id ="+crsid+" and a.staff_id = t.staff_id and a.staff_id = s.staff_id ORDER BY a.staff_id";
 		rs = conn.doSelect(query);
 		try {
 			while(rs.next()){
-				staffIDArr.add(Integer.parseInt(rs.getString("staff_id")));
-				taIDArr.add(Integer.parseInt(rs.getString("ta_id")));
-				taNameArr.add(rs.getString("name"));
+				TAassists t=new TAassists();
+				t.setStaffID(Integer.parseInt(rs.getString("staff_id")));
+				t.setName(rs.getString("name"));
+				t.setTAid(Integer.parseInt(rs.getString("ta_id")));
+				taList.add(t);
 			}
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
@@ -31,8 +31,6 @@ public class TAassistsReqBean {
 			e.printStackTrace();
 		}
 		
-		ta.setStaffID(staffIDArr);
-		ta.setTAid(taIDArr);
-		ta.setName(taNameArr);
+		ta.setTAlist(taList);
 	}
 }

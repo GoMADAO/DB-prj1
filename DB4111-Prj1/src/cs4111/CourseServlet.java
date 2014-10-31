@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cs4111.bean.Course;
-import cs4111.bean.TAassists;
+import cs4111.bean.TAassistsList;
 import cs4111.bean.TAassistsReqBean;
 
 /**
@@ -35,12 +35,10 @@ public class CourseServlet extends HttpServlet {
 		response.setContentType("text/html");  
         response.setCharacterEncoding("UTF-8"); 
         
-        //String crsname=(String)request.getAttribute("coursename");
         String crsid=(String)request.getParameter("courseid");
-        //request.setAttribute("crsname", crsname);
         request.setAttribute("crsid", crsid);
         
-        TAassists ta = new TAassists();
+        TAassistsList ta = new TAassistsList();
         TAassistsReqBean assists = new TAassistsReqBean();
         assists.assists(crsid, ta);
         
