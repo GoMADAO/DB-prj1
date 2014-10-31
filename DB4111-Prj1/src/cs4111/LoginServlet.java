@@ -57,7 +57,6 @@ public class LoginServlet extends HttpServlet {
         	ckstu.stuName(stu);
         	
         	//course info
-        	//--Course course = new Course();
         	CourseList cl =new CourseList();
         	CourseReqBean courseRB = new CourseReqBean();
         	courseRB.courseReqBean(stuname, cl);

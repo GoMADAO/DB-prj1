@@ -48,7 +48,6 @@ body{
       <td><input type="password" name="password"/></td>  
    </tr>  
    <tr>  
-      <!-- onclick="return check(this) 调用上面的Script进行验证 -->  
       <td><input type="submit" name="submit" onclick="return check(this);"/></td>
    </tr>  
 </table>  

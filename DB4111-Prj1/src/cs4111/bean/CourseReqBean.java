@@ -9,28 +9,16 @@ import cs4111.util.DBConn;
 public class CourseReqBean {
 	
 	public void courseReqBean(String stuname, CourseList course){
-//	ArrayList<Integer> IDArr= new ArrayList<Integer>();
-//	ArrayList<String> NameArr= new ArrayList<String>();
-//	ArrayList<String> DescArr= new ArrayList<String>();
-	/**
-	 * Modification 
-	 */
-	ArrayList<Cou> courseList = new ArrayList<Cou>();
+	ArrayList<Course> courseList = new ArrayList<Course>();
 	
 	ResultSet rs = null;
 	DBConn conn =new DBConn();
 	String query = new String();
-	query = "SELECT c.course_id, c.course_name, c.course_desc FROM course c, reg_for r WHERE r.student_id='"+stuname+"' and c.course_id = r.course_id";
+	query = "SELECT c.course_id, c.course_name, c.course_desc FROM course c, reg_for r WHERE r.student_id='"+stuname+"' and c.course_id = r.course_id ORDER BY c.course_id";
 	rs = conn.doSelect(query);
 	try {
 		while(rs.next()){
-//		IDArr.add(Integer.parseInt(rs.getString("course_id")));
-//		NameArr.add(rs.getString("course_name"));
-//		DescArr.add(rs.getString("course_desc"));
-		/**
-		 * Modi
-		 */
-		Cou c=new Cou();
+		Course c=new Course();
 		c.setCid(Integer.parseInt(rs.getString("course_id")));
 		c.setCname(rs.getString("course_name"));
 		c.setCdesc(rs.getString("course_desc"));
@@ -53,13 +41,6 @@ public class CourseReqBean {
 	catch (Exception e) {
 		e.printStackTrace();
 	}
-	/**
-	 * 
-	 * Modi
-	 */
-//	course.setID(IDArr);
-//	course.setName(NameArr);
-//	course.setDesc(DescArr);
 	course.setClist(courseList);
 	}
 }
