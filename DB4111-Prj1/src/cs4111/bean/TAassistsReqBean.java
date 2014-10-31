@@ -13,7 +13,9 @@ public class TAassistsReqBean {
 		DBConn conn =new DBConn();
 		String query = new String();
 		
-		query = "SELECT a.staff_id, t.ta_id, s.name, s.office_hour, s.office_location, c.course_name FROM ta t, assists a, staff s, course c WHERE  c.course_id ="+crsid+" and a.course_id ="+crsid+" and a.staff_id = t.staff_id and a.staff_id = s.staff_id ORDER BY a.staff_id";
+		query = "SELECT a.staff_id, t.ta_id, s.name, s.office_hour, s.office_location, c.course_name "
+				+ "FROM ta t, assists a, staff s, course c "
+				+ "WHERE  c.course_id ="+crsid+" and a.course_id ="+crsid+" and a.staff_id = t.staff_id and a.staff_id = s.staff_id ORDER BY a.staff_id";
 		rs = conn.doSelect(query);
 		try {
 			while(rs.next()){

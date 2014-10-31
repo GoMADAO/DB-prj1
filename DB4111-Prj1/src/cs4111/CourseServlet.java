@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cs4111.bean.ChapterList;
+import cs4111.bean.ChapterReqBean;
 import cs4111.bean.Course;
 import cs4111.bean.CourseList;
 import cs4111.bean.CourseReqBean;
@@ -49,9 +51,14 @@ public class CourseServlet extends HttpServlet {
         ProfTeachesReqBean teaches = new ProfTeachesReqBean();
         teaches.teaches(crsid, prof);
         
+        ChapterList chap = new ChapterList();
+        ChapterReqBean chapb = new ChapterReqBean();
+        chapb.getChap(crsid, chap);
+        
         String forward = new String("Course.jsp");
         request.setAttribute("ta",ta);
         request.setAttribute("prof",prof);
+        request.setAttribute("chap",chap);
         RequestDispatcher rd=request.getRequestDispatcher(forward);
         rd.forward(request,response);
 	}
