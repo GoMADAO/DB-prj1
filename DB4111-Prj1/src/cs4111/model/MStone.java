@@ -43,7 +43,7 @@ public class MStone {
 	public String getStatus(){
 		return this.status;
 	}
-	public Date setDeadline(){
+	public Date getDeadline(){
 		return this.deadline;
 	}
 }
