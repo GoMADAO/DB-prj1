@@ -174,8 +174,7 @@ public class DBConn {
 
 	  
 	  */
-	 public static String driver;//定义驱动     
-     public static String url;//定义URL     
+	
      public static String user;//定义用户名     
      public static String password;//定义密码     
      public static Connection conn;//定义连接     
@@ -205,12 +204,28 @@ public class DBConn {
          //this.conn=this.getConn();  
      }     
      //返回Conn     
-     public Connection getConn(){     
-         return this.conn;     
-     }     
+     	public  Connection getConn(){
+     		try {
+				if(conn.isClosed()){
+					OracleDataSource ods = new OracleDataSource();
+			       	  String dbUser = "mg3534"; // enter your username here
+			       	  String dbPassword = "passw0rd"; // enter your password here
+			       	  ods.setURL("jdbc:oracle:thin:@//w4111c.cs.columbia.edu:1521/ADB"); 
+			       	  ods.setUser(dbUser);
+			       	  ods.setPassword(dbPassword);
+			       	  conn = ods.getConnection();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+     		return this.conn;     
+     	}
+
      //执行插入     
         public void doInsert(String sql) {     
-         try {     
+         try {
+        	 
              stmt = conn.createStatement();     
              int i = stmt.executeUpdate(sql);     
          } catch(SQLException sqlexception) {     
@@ -219,7 +234,8 @@ public class DBConn {
                   
          }     
      }     
-     //执行删除     
+       
+     //执行删除
      public void doDelete(String sql) {     
          try {     
              stmt = conn.createStatement();     

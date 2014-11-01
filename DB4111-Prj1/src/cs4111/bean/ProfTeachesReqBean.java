@@ -7,10 +7,26 @@ import java.util.ArrayList;
 import cs4111.util.DBConn;
 
 public class ProfTeachesReqBean {
+	public DBConn conn;
+	
+	public ProfTeachesReqBean(){
+		conn = new DBConn();
+	}
+	public void closeDBconn(){
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void teaches(String crsid, ProfTeachesList prof){
 		ArrayList<ProfTeaches> profList = new ArrayList<ProfTeaches>();
 		ResultSet rs = null;
-		DBConn conn =new DBConn();
+		conn.getConn();
 		String query = new String();
 		
 		query ="SELECT s.staff_id, s.name, s.office_hour, s.office_location, p.professor_id, p.concentration, c.course_name "
