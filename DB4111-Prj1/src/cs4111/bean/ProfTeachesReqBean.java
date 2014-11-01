@@ -29,6 +29,14 @@ public class ProfTeachesReqBean {
 				p.setProfConc(rs.getString("concentration"));
 				profList.add(p);
 			}
+			rs.close();
+			try {
+				conn.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		} catch (NumberFormatException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

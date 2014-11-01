@@ -14,6 +14,8 @@ public class CourworkBean {
 		ArrayList<Course> courselist = new ArrayList<Course>(cl.getClist());
 		
 		ResultSet rs =null;
+		DBConn conn = new DBConn();
+		
 		
 	}
 	public void reqCouwork(String courseid, CourworkList cwl){
@@ -21,7 +23,7 @@ public class CourworkBean {
 		
 		ResultSet rs = null;
 		DBConn conn =new DBConn();
-		SimpleDateFormat f=new SimpleDateFormat("MM-DD-YY");
+		//SimpleDateFormat f=new SimpleDateFormat("MM-DD-YY");
 		String sql = new String("SELECT * FROM is_assn WHERE course_id ="+courseid);
 		rs= conn.doSelect(sql);
 		try {

@@ -58,13 +58,14 @@ public class DBPoolConn {
          {  
              pc = ocpds.getPooledConnection(); // 从连接池获取连接  
              conn = pc.getConnection();  
+             
          }  
          catch (SQLException e)  
          {  
-             System.out.print("=================================");   
-             System.out.print("Failed to connect to Database！");   
-             System.out.print("=================================");   
-             System.out.print("Error Message：");  
+             System.out.println("=================================");   
+             System.out.println("Failed to connect to Database！");   
+             System.out.println("=================================");   
+             System.out.println("Error Message：");  
              e.printStackTrace();  
              return null;  
          }  
