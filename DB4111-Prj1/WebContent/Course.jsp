@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*" import="cs4111.model.TAassists" 
-    import="cs4111.model.ProfTeaches" import="cs4111.model.Chapter"%>
+    import="cs4111.model.ProfTeaches" import="cs4111.model.Chapter"
+    import="cs4111.model.Courwork"%>
     
 <jsp:useBean id="ta" class="cs4111.model.TAassistsList" scope="request"/> 
 <jsp:useBean id="prof" class="cs4111.model.ProfTeachesList" scope="request"/> 
 <jsp:useBean id="chap" class="cs4111.model.ChapterList" scope="request"/> 
 <jsp:useBean id="courselist" class="cs4111.model.CourseList" scope="request"/> 
 <jsp:useBean id="stu" class="cs4111.model.Student" scope="request"/>   
+<jsp:useBean id="cw" class="cs4111.model.CourworkList" scope="request"/>   
+<jsp:setProperty name="cw" property="*"/>
 <jsp:setProperty name="stu" property="*"/> 
 <jsp:setProperty name="ta" property="*"/>  
 <jsp:setProperty name="prof" property="*"/>
@@ -24,7 +27,9 @@
 	request.getAttribute("ta");
 	request.getAttribute("prof");
 	request.getAttribute("chap");
-	
+	request.getAttribute("cw");
+	ArrayList<Courwork> cwList = new ArrayList<Courwork>();
+    cwList = cw.getCourworkList();
 	ArrayList<TAassists> taList = new ArrayList<TAassists>();
     taList = ta.getTAlist();
     ArrayList<ProfTeaches> profList = new ArrayList<ProfTeaches>();
@@ -101,6 +106,28 @@
 }
 %>
 </table>
-
+<table border="1" cellpadding="10" cellspacing="2">
+<tr>
+<td colspan="4" style='color:red; font-weight:bold'>Coursework History</td>
+</tr>
+<tr style='font-weight:bold'>
+<td width ="14%" align="center">Coursework</td>
+<td width ="20%" align="center">Release Date</td>
+<td width = "20%" align ="center">Due date</td>
+<td align="center">Link</td>
+</tr>
+<%
+	for (int i = 0; i<profList.size(); i++){
+%>
+	<tr>
+	<td width ="14%" align="center"><%=cwList.get(i).getName() %></td>
+	<td width ="20%" align="center"><%=cwList.get(i).getRelDate()%></td>
+	<td width = "10%"><%=cwList.get(i).getDueDate()%></td>
+	<td align = "center"><a href=<%=cwList.get(i).getLink() %>><%=cwList.get(i).getLink()%></a></td>
+	</tr>
+<%
+}
+%>
+</table>
 </body>
 </html>

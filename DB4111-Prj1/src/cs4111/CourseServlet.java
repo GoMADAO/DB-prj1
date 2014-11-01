@@ -11,11 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import cs4111.bean.ChapterReqBean;
 import cs4111.bean.CourseReqBean;
+import cs4111.bean.CourworkBean;
 import cs4111.bean.ProfTeachesReqBean;
 import cs4111.bean.TAassistsReqBean;
 import cs4111.model.ChapterList;
 import cs4111.model.Course;
 import cs4111.model.CourseList;
+import cs4111.model.Courwork;
+import cs4111.model.CourworkList;
 import cs4111.model.ProfTeachesList;
 import cs4111.model.TAassistsList;
 
@@ -58,10 +61,16 @@ public class CourseServlet extends HttpServlet {
         chapb.getChap(crsid, chap);
         chapb.closeDBconn();
         
+        CourworkList cwl=new CourworkList();
+        CourworkBean cwb = new CourworkBean();
+        cwb.reqCouwork(crsid, cwl);
+        cwb.closeDBconn();
+        
         String forward = new String("Course.jsp");
         request.setAttribute("ta",ta);
         request.setAttribute("prof",prof);
         request.setAttribute("chap",chap);
+        request.setAttribute("cw",cwl);
         RequestDispatcher rd=request.getRequestDispatcher(forward);
         rd.forward(request,response);
 	}
