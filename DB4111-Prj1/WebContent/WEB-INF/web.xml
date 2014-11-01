@@ -49,4 +49,14 @@
     <servlet-name>CourseServlet</servlet-name>
     <url-pattern>/CourseServlet</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>CourseworkServlet</display-name>
+    <servlet-name>CourseworkServlet</servlet-name>
+    <servlet-class>cs4111.CourseworkServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CourseworkServlet</servlet-name>
+    <url-pattern>/CourseworkServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

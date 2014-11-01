@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cs4111.bean.Courwork;
 import cs4111.bean.CourworkBean;
 import cs4111.bean.CourworkList;
 
@@ -33,14 +34,18 @@ public class CourseworkServlet extends HttpServlet {
 		response.setContentType("text/html");  
         response.setCharacterEncoding("UTF-8"); 
         
-        String crsid=(String)request.getParameter("courseid");
-        CourworkList cwl = new CourworkList();
+//        String crsid=(String)request.getParameter("courseid");
+//        CourworkList cwl = new CourworkList();
+//        CourworkBean cwb = new CourworkBean();
+//        cwb.reqCouwork(crsid, cwl);
+        
+        String cwid = (String)request.getParameter("courseworkid");
         CourworkBean cwb = new CourworkBean();
-        cwb.reqCouwork(crsid, cwl);
+        Courwork cw= cwb.getACourwork(cwid);
+        cwb.closeDBconn();
         
-        
-        String forward = new String("Coursework.jsp");
-        request.setAttribute("courwork",cwl);
+        String forward = new String("Plan.jsp");
+        request.setAttribute("courwork",cw);
         RequestDispatcher rd=request.getRequestDispatcher(forward);
         rd.forward(request,response);
 	}

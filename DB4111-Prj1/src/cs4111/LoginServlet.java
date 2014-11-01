@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import cs4111.bean.CourseList;
 import cs4111.bean.CourseReqBean;
+import cs4111.bean.CourworkBean;
+import cs4111.bean.CourworkList;
 import cs4111.bean.StuCheckBean;  
 import cs4111.bean.Student;
 import cs4111.bean.Course;
@@ -61,11 +63,16 @@ public class LoginServlet extends HttpServlet {
         	CourseReqBean courseRB = new CourseReqBean();
         	courseRB.courseReqBean(stuname, cl);
         	courseRB.closeDBconn();
+        	CourworkList cwl = new CourworkList();
+        	CourworkBean cwb = new CourworkBean();
+        	cwb.getCurWork(cl, cwl);
+        	cwb.closeDBconn();
         	
         	//forward to JSP
             forward="MainPage.jsp";  
             request.setAttribute("stu",stu);
             request.setAttribute("courselist",cl);
+            request.setAttribute("currentwork", cwl);
               
         }else{  
             forward="error.jsp";  
