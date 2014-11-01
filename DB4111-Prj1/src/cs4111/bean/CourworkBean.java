@@ -65,15 +65,19 @@ public class CourworkBean {
 		java.sql.Date now=new java.sql.Date(System.currentTimeMillis());
 		SimpleDateFormat df = new SimpleDateFormat("MM-dd-YY");//设置日期格式
 		
-		StringBuffer sql =new StringBuffer("SELECT * FROM is_assn WHERE course_id IN (");
+		StringBuffer sql =new StringBuffer("SELECT c.course_name as course_name,"
+				+ " i.coursework_id as coursework_id, i.release_date as release_date,"
+				+ " i.due_date as due_date, i.name as name, i.link as link"
+				+ " FROM is_assn i join course c"
+				+ " on c.course_id = i.course_id WHERE i.course_id IN (");
 		for(int i=0; i<courselist.size();i++){
 			sql.append(courselist.get(i).getCid()+",");
 		}
 		sql.deleteCharAt(sql.length()-1);
-		sql.append(") AND release_date < to_date('");   //
-		sql.append(df.format(now) + "', 'mm-dd-yy') AND due_date > to_date('");
-		sql.append(df.format(now) + "', 'mm-dd-yy') ORDER BY due_date DESC");
-		//System.out.println(sql);
+		sql.append(") AND i.release_date < to_date('");   //
+		sql.append(df.format(now) + "', 'mm-dd-yy') AND i.due_date > to_date('");
+		sql.append(df.format(now) + "', 'mm-dd-yy') ORDER BY i.due_date DESC");
+		System.out.println(sql);
 		conn.getConn();
 		rs = conn.doSelect(sql.toString());
 		//courworklist
@@ -87,6 +91,7 @@ public class CourworkBean {
 				//cw.setDueDate(Timestamp.valueOf(rs.getString("due_date")));
 				cw.setLink(rs.getString("link"));
 				cw.setName(rs.getString("name"));
+				cw.setCoursename(rs.getString("course_name"));
 				courworklist.add(cw);
 			}
 			rs.close();
@@ -117,6 +122,7 @@ public class CourworkBean {
 				//cw.setDueDate(Timestamp.valueOf(rs.getString("due_date")));
 				cw.setLink(rs.getString("link"));
 				cw.setName(rs.getString("name"));
+				
 				courworklist.add(cw);
 			}
 			rs.close();
@@ -157,7 +163,8 @@ public class CourworkBean {
 		courworklist =cwl.getCourworkList();                          
 		for(int i =0; i<courworklist.size();i++){                     
 			System.out.println(courworklist.get(i).getRelDate());     
-			System.out.println(courworklist.get(i).getLink());        
+			System.out.println(courworklist.get(i).getLink()); 
+			System.out.println(courworklist.get(i).getCoursename()); 
 		}                                                             
 	}
 	

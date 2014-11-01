@@ -58,11 +58,13 @@
  <td width="12%" align="center">Due Date</td>
  <td width="12%" align="center">Link</td>
  </tr>
- <%for (int i=0; i<cwl.size(); i++){%>
+ <%int cid = 0;
+   for (int i=0; i<cwl.size(); i++){%>
  <tr>
  <td width="12%" align="center"><a href = <%=request.getContextPath()
  + "/CourseworkServlet?courseworkid="+ cwl.get(i).getWorkId()%>>
  <%=cwl.get(i).getName() %></a></td>
+ <td width="12%" align="center"><%=cwl.get(i).getCoursename()%></td>
  <td width="12%" align="center"><%=cwl.get(i).getRelDate()%></td>
  <td width="12%" align="center"><%=cwl.get(i).getDueDate() %></td>
  <td width="12%" align="center"><a href = <%=cwl.get(i).getLink()%> ><%=cwl.get(i).getLink() %></a></td>

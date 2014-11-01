@@ -10,7 +10,14 @@ public class Courwork {
 	private Timestamp duedate;
 	private String name;
 	private String link;
+	private String coursename;
 	
+	public void setCoursename(String name){
+		this.coursename = name;
+	}
+	public String getCoursename(){
+		return this.coursename;
+	}
 	public void setWorkId(Integer id){
 		this.workid = id;
 	}
