@@ -46,14 +46,17 @@ public class CourseServlet extends HttpServlet {
         TAassistsList ta = new TAassistsList();
         TAassistsReqBean assists = new TAassistsReqBean();
         assists.assists(crsid, ta);
+        assists.closeDBconn();
         
         ProfTeachesList prof = new ProfTeachesList();
         ProfTeachesReqBean teaches = new ProfTeachesReqBean();
         teaches.teaches(crsid, prof);
+        teaches.closeDBconn();
         
         ChapterList chap = new ChapterList();
         ChapterReqBean chapb = new ChapterReqBean();
         chapb.getChap(crsid, chap);
+        chapb.closeDBconn();
         
         String forward = new String("Course.jsp");
         request.setAttribute("ta",ta);

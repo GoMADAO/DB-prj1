@@ -7,10 +7,26 @@ import java.util.ArrayList;
 import cs4111.util.DBConn;
 
 public class TAassistsReqBean {
+	public DBConn conn;
+	
+	public TAassistsReqBean(){
+		conn = new DBConn();
+	}
+	public void closeDBconn(){
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void assists(String crsid, TAassistsList ta){
 		ArrayList<TAassists> taList = new ArrayList<TAassists>();
 		ResultSet rs = null;
-		DBConn conn =new DBConn();
+		conn.getConn();
 		String query = new String();
 		
 		query = "SELECT a.staff_id, t.ta_id, s.name, s.office_hour, s.office_location, c.course_name "

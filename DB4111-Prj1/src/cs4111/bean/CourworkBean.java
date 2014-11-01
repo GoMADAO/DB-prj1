@@ -10,11 +10,30 @@ import java.util.ArrayList;
 import cs4111.util.DBConn;
 
 public class CourworkBean {
+	public DBConn conn;
+	
+	public CourworkBean(){
+		conn = new DBConn();
+	}
+	public void closeDBconn(){
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	
+	
 	public void getCurWork(CourseList cl, CourworkList cwl){
 		ArrayList<Course> courselist = new ArrayList<Course>(cl.getClist());
 		
 		ResultSet rs =null;
-		DBConn conn = new DBConn();
+		
 		
 		
 	}
@@ -22,7 +41,8 @@ public class CourworkBean {
 		ArrayList<Courwork> courworklist = new ArrayList<Courwork>();
 		
 		ResultSet rs = null;
-		DBConn conn =new DBConn();
+		//DBConn conn =new DBConn();
+		
 		//SimpleDateFormat f=new SimpleDateFormat("MM-DD-YY");
 		String sql = new String("SELECT * FROM is_assn WHERE course_id ="+courseid);
 		rs= conn.doSelect(sql);

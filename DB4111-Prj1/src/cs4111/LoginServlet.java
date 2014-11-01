@@ -55,11 +55,12 @@ public class LoginServlet extends HttpServlet {
         if(bool){  
         	//student name
         	ckstu.stuName(stu);
-        	
+        	ckstu.closeDBconn();
         	//course info
         	CourseList cl =new CourseList();
         	CourseReqBean courseRB = new CourseReqBean();
         	courseRB.courseReqBean(stuname, cl);
+        	courseRB.closeDBconn();
         	
         	//forward to JSP
             forward="MainPage.jsp";  
