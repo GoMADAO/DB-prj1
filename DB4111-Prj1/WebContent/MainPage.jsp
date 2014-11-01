@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*" import="cs4111.bean.Course" import="cs4111.bean.Courwork" %>
+    pageEncoding="UTF-8" import="java.util.*" 
+    import="cs4111.model.Course" import="cs4111.model.Courwork" %>
 
-<jsp:useBean id="stu" class="cs4111.bean.Student" scope="request"/>   
-<jsp:useBean id="courselist" class="cs4111.bean.CourseList" scope="request"/> 
-<jsp:useBean id="currentwork" class="cs4111.bean.CourworkList" scope="request"/>'
+<jsp:useBean id="stu" class="cs4111.model.Student" scope="request"/>   
+<jsp:useBean id="courselist" class="cs4111.model.CourseList" scope="request"/> 
+<jsp:useBean id="currentwork" class="cs4111.model.CourworkList" scope="request"/>'
 
 <jsp:setProperty name="stu" property="*"/> 
 <jsp:setProperty name="courselist" property="*"/>

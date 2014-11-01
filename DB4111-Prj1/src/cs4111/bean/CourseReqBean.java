@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import cs4111.model.Course;
+import cs4111.model.CourseList;
 import cs4111.util.DBConn;
 
 public class CourseReqBean {

@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import cs4111.model.TAassists;
+import cs4111.model.TAassistsList;
 import cs4111.util.DBConn;
 
 public class TAassistsReqBean {

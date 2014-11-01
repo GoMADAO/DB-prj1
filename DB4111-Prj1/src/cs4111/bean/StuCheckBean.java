@@ -2,8 +2,8 @@ package cs4111.bean;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import cs4111.model.Student;
 import cs4111.util.DBConn;
-import cs4111.bean.Student;
 
 public class StuCheckBean {
 

@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import cs4111.model.ProfTeaches;
+import cs4111.model.ProfTeachesList;
 import cs4111.util.DBConn;
 
 public class ProfTeachesReqBean {

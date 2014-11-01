@@ -1,11 +1,12 @@
-package cs4111.bean;
+package cs4111.model;
 
-public class TAassists {
+public class ProfTeaches {
 	private Integer StaffID;
 	private Integer CourseID;
 	private String CourseName;
-	private Integer TAid;
-	private String TAname;
+	private Integer ProfID;
+	private String ProfName;
+	private String ProfConc;
 	private String OfficeHour;
 	private String OfficeLoc;
 	
@@ -13,7 +14,7 @@ public class TAassists {
 		this.StaffID = sid;
 	}
 	public void setName(String name){
-		this.TAname = name;
+		this.ProfName = name;
 	}
 	public void setCourseID(Integer cid){
 		this.CourseID = cid;
@@ -21,8 +22,11 @@ public class TAassists {
 	public void setCourseName(String cname){
 		this.CourseName = cname;
 	}
-	public void setTAid(Integer tid){
-		this.TAid = tid;
+	public void setProfID(Integer tid){
+		this.ProfID = tid;
+	}
+	public void setProfConc(String conc){
+		this.ProfConc = conc;
 	}
 	public void setOfficeHour(String officeh){
 		this.OfficeHour = officeh;
@@ -35,7 +39,7 @@ public class TAassists {
 		return this.StaffID;
 	}
 	public String getName(){
-		return this.TAname;
+		return this.ProfName;
 	}
 	public Integer getCourseID(){
 		return this.CourseID;
@@ -43,8 +47,11 @@ public class TAassists {
 	public String getCourseName(){
 		return this.CourseName;
 	}
-	public Integer getTAid(){
-		return this.TAid;
+	public Integer getProfID(){
+		return this.ProfID;
+	}
+	public String getProfConc(){
+		return this.ProfConc;
 	}
 	public String getOfficeHour(){
 		return this.OfficeHour;
@@ -52,4 +59,5 @@ public class TAassists {
 	public String getOfficeLoc(){
 		return this.OfficeLoc;
 	}
+
 }

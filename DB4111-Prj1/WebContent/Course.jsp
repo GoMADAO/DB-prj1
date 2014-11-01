@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*" import="cs4111.bean.TAassists" import="cs4111.bean.ProfTeaches" import="cs4111.bean.Chapter"%>
+    pageEncoding="UTF-8" import="java.util.*" import="cs4111.model.TAassists" 
+    import="cs4111.model.ProfTeaches" import="cs4111.model.Chapter"%>
     
-<jsp:useBean id="ta" class="cs4111.bean.TAassistsList" scope="request"/> 
-<jsp:useBean id="prof" class="cs4111.bean.ProfTeachesList" scope="request"/> 
-<jsp:useBean id="chap" class="cs4111.bean.ChapterList" scope="request"/> 
-<jsp:useBean id="courselist" class="cs4111.bean.CourseList" scope="request"/> 
-<jsp:useBean id="stu" class="cs4111.bean.Student" scope="request"/>   
+<jsp:useBean id="ta" class="cs4111.model.TAassistsList" scope="request"/> 
+<jsp:useBean id="prof" class="cs4111.model.ProfTeachesList" scope="request"/> 
+<jsp:useBean id="chap" class="cs4111.model.ChapterList" scope="request"/> 
+<jsp:useBean id="courselist" class="cs4111.model.CourseList" scope="request"/> 
+<jsp:useBean id="stu" class="cs4111.model.Student" scope="request"/>   
 <jsp:setProperty name="stu" property="*"/> 
 <jsp:setProperty name="ta" property="*"/>  
 <jsp:setProperty name="prof" property="*"/>

@@ -1,7 +1,6 @@
 package cs4111.bean;
 
 import java.sql.Date;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -12,6 +11,10 @@ import java.util.ArrayList;
 
 import java.text.SimpleDateFormat;
 
+import cs4111.model.Course;
+import cs4111.model.CourseList;
+import cs4111.model.Courwork;
+import cs4111.model.CourworkList;
 import cs4111.util.DBConn;
 
 public class CourworkBean {
@@ -48,6 +51,7 @@ public class CourworkBean {
 				cw.setLink(rs.getString("link"));
 				cw.setName(rs.getString("name"));
 			}
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,6 +89,7 @@ public class CourworkBean {
 				cw.setName(rs.getString("name"));
 				courworklist.add(cw);
 			}
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

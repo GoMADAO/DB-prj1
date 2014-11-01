@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cs4111.bean.Courwork;
 import cs4111.bean.CourworkBean;
-import cs4111.bean.CourworkList;
+import cs4111.bean.PlanBean;
+import cs4111.model.Courwork;
+import cs4111.model.CourworkList;
+import cs4111.model.Plan;
 
 /**
  * Servlet implementation class CourseworkServlet
@@ -43,8 +45,12 @@ public class CourseworkServlet extends HttpServlet {
         CourworkBean cwb = new CourworkBean();
         Courwork cw= cwb.getACourwork(cwid);
         cwb.closeDBconn();
-        
+        PlanBean pb = new PlanBean();
+        Plan pl = new Plan();
+        pl = pb.getPlan(cwid);
+        pb.closeDBconn();
         String forward = new String("Plan.jsp");
+        request.setAttribute("plan", pl);
         request.setAttribute("courwork",cw);
         RequestDispatcher rd=request.getRequestDispatcher(forward);
         rd.forward(request,response);

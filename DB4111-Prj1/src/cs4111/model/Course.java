@@ -1,4 +1,4 @@
-package cs4111.bean;
+package cs4111.model;
 
 public class Course {
 	private Integer cid;

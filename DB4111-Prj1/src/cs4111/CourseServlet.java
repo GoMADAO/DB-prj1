@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cs4111.bean.ChapterList;
 import cs4111.bean.ChapterReqBean;
-import cs4111.bean.Course;
-import cs4111.bean.CourseList;
 import cs4111.bean.CourseReqBean;
-import cs4111.bean.ProfTeachesList;
 import cs4111.bean.ProfTeachesReqBean;
-import cs4111.bean.TAassistsList;
 import cs4111.bean.TAassistsReqBean;
+import cs4111.model.ChapterList;
+import cs4111.model.Course;
+import cs4111.model.CourseList;
+import cs4111.model.ProfTeachesList;
+import cs4111.model.TAassistsList;
 
 /**
  * Servlet implementation class CourseServlet

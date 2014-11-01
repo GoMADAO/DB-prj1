@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import cs4111.model.Chapter;
+import cs4111.model.ChapterList;
 import cs4111.util.DBConn;
 
 public class ChapterReqBean {

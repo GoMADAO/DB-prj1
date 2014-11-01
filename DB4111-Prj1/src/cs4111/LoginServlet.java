@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cs4111.bean.CourseList;
 import cs4111.bean.CourseReqBean;
 import cs4111.bean.CourworkBean;
-import cs4111.bean.CourworkList;
 import cs4111.bean.StuCheckBean;  
-import cs4111.bean.Student;
-import cs4111.bean.Course;
+import cs4111.model.Course;
+import cs4111.model.CourseList;
+import cs4111.model.CourworkList;
+import cs4111.model.Student;
 /**
  * Servlet implementation class LoginServlet
  */
