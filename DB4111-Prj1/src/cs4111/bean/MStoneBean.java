@@ -14,6 +14,9 @@ public class MStoneBean {
 	public MStoneBean(){
 		conn = new DBConn();
 	}
+	public DBConn getCon(){
+		return this.conn;
+	}
 	public void closeDBconn(){
 		try {
 			conn.close();
@@ -68,9 +71,13 @@ public class MStoneBean {
 				+ "VALUES(3,0,'test',20,62,to_date('02-November-2014','DD-MONTH-YYYY'))");
 		conn.getConn();
 		conn.doInsert(sql);
+		sql = null;
+		sql = "{? = call getmstoneseq()}";
+		String msid=conn.doFunction(sql);
 		ResultSet rs = null;
+		
+		sql = "SELECT * FROM mstone WHERE milestone_id = "+msid;
 		System.out.print(sql);
-		sql = "SELECT * FROM mstone WHERE milestone_id = (select mstoneSeq.currval from dual)";
 		MStoneList msl = new MStoneList();
 		ArrayList<MStone> msarr = new ArrayList<MStone>();
 		rs= conn.doSelect(sql);
@@ -92,5 +99,12 @@ public class MStoneBean {
 		}
 		msl.setMStoneList(msarr);
 		return msl;
+	}
+	public static void main(String[] args){
+		//MStoneBean msb =new MStoneBean();
+		DBConn con = new DBConn();
+		String sql = "{? = call getmstoneseq()}";
+		String s = con.doFunction(sql);
+		System.out.println(s);
 	}
 }

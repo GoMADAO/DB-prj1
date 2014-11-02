@@ -1,9 +1,11 @@
 package cs4111.util;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 
 import javax.sql.PooledConnection;
 
@@ -253,6 +255,23 @@ public class DBConn {
              System.err.println("db.executeUpdate:" + sqlexception.getMessage());     
          }     
      }     
+     
+     public String doFunction(String sql){
+    	 String result = null;
+    	 try {
+			CallableStatement cst = conn.prepareCall(sql);
+			cst.registerOutParameter(1, Types.INTEGER);
+			cst.execute();
+			result = cst.getString(1);
+			cst.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}   
+		return result;
+    	 
+     }
+     
      //查询结果集     
      public ResultSet doSelect(String sql) {     
          try {  
