@@ -1,6 +1,7 @@
 package cs4111;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,6 +45,7 @@ public class CourseworkServlet extends HttpServlet {
 //        cwb.reqCouwork(crsid, cwl);
         
         String cwid = (String)request.getParameter("courseworkid");
+        
         CourworkBean cwb = new CourworkBean();
         Courwork cw= cwb.getACourwork(cwid);
         cwb.closeDBconn();
@@ -64,6 +66,7 @@ public class CourseworkServlet extends HttpServlet {
         request.setAttribute("plan", pl);
         request.setAttribute("courwork",cw);
         request.setAttribute("mstonelist", msl);
+        request.setAttribute("cwid", cwid);
         RequestDispatcher rd=request.getRequestDispatcher(forward);
         rd.forward(request,response);
 	}
@@ -73,6 +76,44 @@ public class CourseworkServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("text/html");  
+        response.setCharacterEncoding("UTF-8"); 
+        
+		String mstonePerc = (String)request.getParameter("weight");
+        String mstoneDesc = (String)request.getParameter("desc");
+        String mstoneDDL = (String)request.getParameter("deadline");
+        String mstonePlid = (String)request.getParameter("planid");
+        String cwid = (String)request.getParameter("cwid");
+        
+//        PrintWriter out = response.getWriter();
+//        out.println(mstonePerc);
+//        out.println(mstoneDesc);
+//        out.println(mstoneDDL);
+//        out.println(mstonePlid);
+//        out.println(cwid);
+        
+        CourworkBean cwb = new CourworkBean();
+        Courwork cw= cwb.getACourwork(cwid);
+        cwb.closeDBconn();
+        
+        PlanBean pb = new PlanBean();
+        Plan pl = new Plan();
+        pl = pb.getPlan(cwid);
+        pb.closeDBconn();
+        
+        MStoneList msl = new MStoneList();
+        MStoneBean msb = new MStoneBean();
+        msl = msb.newMstone(mstonePlid, mstoneDDL, mstonePerc, mstoneDesc);
+        msb.closeDBconn();
+        
+
+        String forward = new String("Plan.jsp");
+        request.setAttribute("plan", pl);
+        request.setAttribute("courwork",cw);
+        request.setAttribute("mstonelist", msl);
+        request.setAttribute("cwid", cwid);
+        RequestDispatcher rd=request.getRequestDispatcher(forward);
+        rd.forward(request,response);
 	}
 
 }

@@ -21,7 +21,16 @@
           $(document).ready(function () {  
               $("#desc").setTip({defaultValue:"Milestone Description"});  
           });  
-      </script>  
+      </script>
+<script>
+function confirm(){
+	var weight_v = document.getElementById('text').innerHTML;
+	document.getElementById('transW').value = weight_v;
+	var desc_v = document.getElementById('desc').value;
+	document.getElementById('transD').value = desc_v;
+	$('form1').submit();
+}
+</script>  
 <style>
 html, body {
 background: #fff;
@@ -36,15 +45,20 @@ background: #fc6;
 
 </head>
 <body>
+<% String plid = (String)request.getParameter("planid");%>
+<% String cwid = (String)request.getParameter("cwid");%>
 <h1 style="color:#216fa0">New Milestone</h1>
-<form action="MstoneServlet" method="post" name="form1">
+<form action="CourseworkServlet" method="post" name="form1">
 <fieldset><div style="width:630px"><input name="deadline" class="fieldset__input js__datepicker" type="text" placeholder="Milestone Deadline&hellip;"></div></fieldset>
 		<div style="color:gray">Milestone Weight (0-100%)</div>
 		<div id="slider"></div>
-		<div id="text">100%</div>
-		<input name="weight" id="trans" style="visibility:hidden">
-		<textarea id="desc" name="desc" class="fn setTip" style="width:630px; height:200px; display:block"></textarea>
-		<input type="submit" onclick="confirm()" style="color:gray; margin:10px 10px 10px 0px; font-size: 18px;">
+		<div id="text" style="margin:0 0 20px 0">100%</div>
+		<textarea id="desc" name="descinput" class="fn setTip" style="width:630px; height:200px; display:block;"></textarea>
+		<input name="weight" id="transW" style="visibility:hidden">
+		<input name="desc" id="transD" style="visibility:hidden">
+		<input name="cwid" value=<%=cwid %> style="visibility:hidden">
+		<input name="planid" value=<%=plid %> style="visibility:hidden">
+		<input type="submit" onclick="confirm()" style="color:gray; margin:10px 10px 10px 0px; font-size: 18px;display:block;margin:-6px 0 0 0">
 </form>
 </body>
 
@@ -132,14 +146,7 @@ background: #fc6;
     };  
 })(jQuery);
 </script>
- 
 
-<script>
-function confirm(){
-	var weight_v = document.getElementById('text').innerHTML;
-	document.getElementById('trans').value = weight_v;
-}
-</script>
     <script>window.jQuery||document.write('<script src="js/pickadate.js-dev/tests/jquery.2.0.0.js"><\/script>')</script>
     <script src="js/pickadate.js-dev/lib/picker.js"></script>
     <script src="js/pickadate.js-dev/lib/picker.date.js"></script>
