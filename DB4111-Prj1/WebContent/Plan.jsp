@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*" import="cs4111.model.MStone" import="cs4111.model.Courwork"
+    pageEncoding="UTF-8" import="java.util.*" import="cs4111.model.MStone" 
+    import="cs4111.model.Courwork"
 %>
 <%@page import="org.json.simple.JSONObject"%>
 <%@ page import="java.io.*"%>
     <jsp:useBean id="courwork" class="cs4111.model.Courwork" scope="request"/>
 <jsp:useBean id="plan" class="cs4111.model.Plan" scope="request"/>
 <jsp:useBean id="mstonelist" class="cs4111.model.MStoneList" scope="request"/>
+<jsp:useBean id="today" class="cs4111.model.DayTask" scope="request"/>
+<jsp:useBean id="tomor" class="cs4111.model.DayTask" scope="request"/>
 
+<jsp:setProperty name="tomor" property="*"/> 
+<jsp:setProperty name="today" property="*"/> 
 <jsp:setProperty name="mstonelist" property="*"/> 
 <jsp:setProperty name="plan" property="*"/> 
 <jsp:setProperty name="courwork" property="*"/> 
@@ -29,6 +34,8 @@
 <% request.getAttribute("courwork");
 	request.getAttribute("plan");
 	request.getAttribute("mstonelist");
+	request.getAttribute("today");
+	request.getAttribute("tomor");
 	String cwid = (String)request.getAttribute("cwid");
 %>
 <div style='padding:10px; color:black; font-size:15px; font-family: Courier New'>
@@ -77,7 +84,7 @@ Milestone</div>
    } 
    str = str+"] } ] }}";
     /* String str="{\"JSChart\" : { \"datasets\" : [ {\"type\" : \"line\",\"data\" : [ {\"unit\" : \"10\",\"value\" : \"20\"},{\"unit\" : \"20\",\"value\" : \"30\"},{\"unit\" : \"40\",\"value\" : \"10\"} ] } ] }}"; */ 
-	//out.println(str);
+//out.println(str);
    pw.println(str);//写内容
    pw.close();
    //out.println("已将内容成功写入到文件！");
@@ -86,7 +93,100 @@ Milestone</div>
 }
 %>
 <input type="button" value="New"  onclick="location.href='addMstone.jsp?cwid='+<%=cwid %>+'&planid='+<%=plan.getPlanid() %>">
+
+<br>
+<div style='padding:10px; color:black; font-size:15px; font-family: Courier New'>Daily Tasks<%=request.getContextPath()%></div>
+
+<%
+String nextCon;
+String nextDat;
+String nextSep;
+String nextWei;
+String nextSta;
+if(tomor.isEmpty()){
+	nextCon ="";
+	nextDat ="";
+	nextSep = "";
+	nextWei = "";
+	nextSta = "";
+}else{
+	nextCon = tomor.getContent();
+	nextDat = tomor.getDate().toString();
+	nextSep = tomor.getSpend().toString();
+	nextWei = tomor.getWeight().toString();
+	nextSta = tomor.getStatus().toString();
+}
+		
+	%>
+<%-- <table width="100%">
+ <tr>
+ <td colspan="2"  width ="50%">Daily Task: <%=today.getDate()%> </td>
+ <td colspan = "2">Plan for Tomorrow</td>
+ </tr> --%>
+
+<table>
+<tr>
+<td rowspan="5" >
+<form action = "DayTaskServlet" method ="post" name="form1">
+<input name="Tcontent" value=<%=today.getContent()%> type="text" style = "display:block">
+<input name="Tspentime" value = <%=today.getSpend()%> type ="text" style = "display:block">
+<input name="Tweight" value =<%=today.getWeight()%> type="text" style = "display:block">
+<input name="Tstatus" value=<%=today.getStatus()%> type="text" style = "display:block">
+<input name="Tplan" type ="hidden" value=<%=today.getPlanid()%>>
+<input name="Ttask" type ="hidden" value=<%=today.getTaskid()%>>
+<input name="TCid" type="hidden" value=<%=cwid %>>
+<input type="submit">
+</form>
+</td>
+<td>
+<tr><td >Content</td></tr>
+<tr><td >Spent time</td></tr>
+<tr><td >Progress</td></tr>
+<tr><td >Status</td></tr>
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td rowspan="5" >
+<form action = "CourseworkServlet" method ="post" name="form2">
+<input  type="text" style = "display:block" value=<%=nextCon %> />
+<input  type="text" style = "display:block" value = <%=nextSep %> />
+<input  type="text" style = "display:block" value =<%=nextWei %> />
+<input  type="text" style = "display:block" value=<%=nextSta%> />
+</form>
+</td>
+<td>
+<tr><td >Content</td></tr>
+<tr><td >Spent time</td></tr>
+<tr><td >Progress</td></tr>
+<tr><td >Status</td></tr>
+</td>
+</tr>
+</table>
+
+
+ <%-- <tr>
+ <td width="10%">Content</td><td width="40%"><input value=<%=today.getContent()%> type="text"></td>
+ <td width="10%">Content</td><td><%=nextCon %></td>
+ </tr>
+ <tr>
+ <td width="10%">Spent time</td><td width="40%"><input value = <%=today.getSpend()%> type ="text"></td>
+ <td width="10%">Spent time</td><td><%=nextSep %></td>
+ </tr>      
+ <tr>       
+ <td width="10%">Progress</td><td width="40%"><input value =<%=today.getWeight()%> type="text"></td>
+ <td width="10%">Progress</td><td><%=nextWei %></td>
+ </tr>      
+ <tr>       
+ <td width="10%">Status</td><td width="40%"><input value=<%=today.getStatus()%> type="text"></td>
+ <td width="10%">Status</td><td><%=nextSta%></td>
+ </tr>
+ </table> --%>
+
 </body>
+
 <script type="text/javascript">
 var myChart = new JSChart('chartcontainer', 'line');
 myChart.setDataJSON('data.json');
