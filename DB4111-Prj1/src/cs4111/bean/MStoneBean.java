@@ -65,18 +65,18 @@ public class MStoneBean {
 			day = "0"+day;
 		}
 		weight = weight.split("\\%")[0];
-//		String sql = new String("INSERT INTO mstone(plan_id,times_of_modif,milestone_desc,weight,status,deadline) "
-//				+ "VALUES("+planid+",0,'"+desc+"',"+weight+",62,to_date('"+day+"-"+mon+"-"+year+"','DD-MONTH-YYYY');");
 		String sql = new String("INSERT INTO mstone(plan_id,times_of_modif,milestone_desc,weight,status,deadline) "
-				+ "VALUES(3,0,'test',20,62,to_date('02-November-2014','DD-MONTH-YYYY'))");
+				+ "VALUES ("+planid+",0,'"+desc+"',"+weight+",62,to_date('"+mon+"-"+day+"-"+year+"','MM-DD-YY'))");
+//		String sql = new String("INSERT INTO mstone(plan_id,times_of_modif,milestone_desc,weight,status,deadline) "
+//				+ "VALUES(3,0,'test',20,62,to_date('02-November-2014','DD-MONTH-YYYY'))");
 		conn.getConn();
 		conn.doInsert(sql);
 		sql = null;
-		sql = "{? = call getmstoneseq()}";
-		String msid=conn.doFunction(sql);
+		//sql = "{? = call getmstoneseq()}";
+		//String msid=conn.doFunction(sql);
 		ResultSet rs = null;
 		
-		sql = "SELECT * FROM mstone WHERE milestone_id = "+msid;
+		sql = "SELECT * FROM mstone WHERE plan_id ="+planid;
 		System.out.print(sql);
 		MStoneList msl = new MStoneList();
 		ArrayList<MStone> msarr = new ArrayList<MStone>();

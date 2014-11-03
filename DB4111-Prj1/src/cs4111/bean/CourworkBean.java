@@ -38,7 +38,7 @@ public class CourworkBean {
 	
 	public Courwork getACourwork(String courseworkid){
 		ResultSet rs= null;
-		String sql = new String("Select * from is_assn where coursework_id = "+courseworkid);
+		String sql = new String("Select * from is_assn a, course c where c.course_id = a.course_id AND a.coursework_id = "+courseworkid);
 		conn.getConn();
 		rs= conn.doSelect(sql);
 		Courwork cw =new Courwork();
@@ -50,6 +50,7 @@ public class CourworkBean {
 				//cw.setDueDate(Timestamp.valueOf(rs.getString("due_date")));
 				cw.setLink(rs.getString("link"));
 				cw.setName(rs.getString("name"));
+				cw.setCoursename(rs.getString("course_name"));
 			}
 			rs.close();
 		} catch (SQLException e) {

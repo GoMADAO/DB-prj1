@@ -50,13 +50,14 @@
  <%} %>
  </table>
  <%//////////// %>
- <div style='padding:10px; color:red; font-size:30px; font-family: Courier New'>Current Course Work</div>
+ <div style='padding:10px; font-size:20px; font-family: Courier New'>Current Course Work</div>
   <table border="1" cellpadding="10" cellspacing="2">
  <tr style='font-weight:bold' style='font-family: Courier New'>
  <td width="12%" align="center">Name</td>
- <td width="12%" align="center">Release Date</td>
- <td width="12%" align="center">Due Date</td>
- <td width="12%" align="center">Link</td>
+ <td width="20%" align="center">Course</td>
+ <td width="24%" align="center">Release Date</td>
+ <td width="30%" align="center">Due Date</td>
+ <td align="center">Link</td>
  </tr>
  <%int cid = 0;
    for (int i=0; i<cwl.size(); i++){%>
@@ -64,10 +65,10 @@
  <td width="12%" align="center"><a href = <%=request.getContextPath()
  + "/CourseworkServlet?courseworkid="+ cwl.get(i).getWorkId()%>>
  <%=cwl.get(i).getName() %></a></td>
- <td width="12%" align="center"><%=cwl.get(i).getCoursename()%></td>
- <td width="12%" align="center"><%=cwl.get(i).getRelDate()%></td>
- <td width="12%" align="center"><%=cwl.get(i).getDueDate() %></td>
- <td width="12%" align="center"><a href = <%=cwl.get(i).getLink()%> ><%=cwl.get(i).getLink() %></a></td>
+ <td width="20%" align="center"><%=cwl.get(i).getCoursename()%></td>
+ <td width="24%" align="center"><%=cwl.get(i).getRelDate()%></td>
+ <td width="30%" align="center"><%=cwl.get(i).getDueDate() %></td>
+ <td><a href = <%=cwl.get(i).getLink()%> ><%=cwl.get(i).getLink() %></a></td>
  </tr>
  <%} %>
  </table>
