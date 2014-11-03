@@ -30,7 +30,7 @@ public class MStoneBean {
 	}
 	public MStoneList getMStoneList(String planid){
 		ResultSet rs = null;
-		String sql = new String("SELECT * FROM mstone WHERE plan_id ="+planid);
+		String sql = new String("SELECT * FROM mstone WHERE plan_id ="+planid+" ORDER BY milestone_id");
 		MStoneList msl = new MStoneList();
 		ArrayList<MStone> msarr = new ArrayList<MStone>();
 		conn.getConn();
@@ -76,7 +76,7 @@ public class MStoneBean {
 		//String msid=conn.doFunction(sql);
 		ResultSet rs = null;
 		
-		sql = "SELECT * FROM mstone WHERE plan_id ="+planid;
+		sql = "SELECT * FROM mstone WHERE plan_id ="+planid+" ORDER BY milestone_id";
 		System.out.print(sql);
 		MStoneList msl = new MStoneList();
 		ArrayList<MStone> msarr = new ArrayList<MStone>();
