@@ -23,7 +23,22 @@ public class PlanBean {
 			e.printStackTrace();
 		}
 	}
-	
+	public void insPlan(Plan pl, String courseid, String stuid){
+		if(pl.getPlanid()!=null)
+			return;
+		String sql = "Insert into plan (start_date,end_date) values (to_date('"+pl.getStdate()+"','MM-DD-YY')"
+				+", to_date('"+pl.getEddate()+"','MM-DD-YY'))";
+		
+		conn.getConn();
+		System.out.println(sql);
+		conn.doInsert(sql);
+		String s = "{? = call getplanseq()}";
+		String pid = conn.doFunction(s);
+		sql = "insert into is_sche values ("+pid+","+courseid+",'"+stuid+"')";
+		conn.doInsert(sql);
+		
+		
+	}
 	public Plan getPlan(String courseworkid, String studentid){
 		ResultSet rs =null;
 		String sql = new String("SELECT p.plan_id, p.start_date, p.end_date, "
@@ -46,5 +61,10 @@ public class PlanBean {
 			e.printStackTrace();
 		}
 		return pl;
+	}
+	public static void main(String[] args){
+		PlanBean p = new PlanBean();
+		Plan pl = new Plan();
+		p.insPlan(pl,"1","1");
 	}
 }
