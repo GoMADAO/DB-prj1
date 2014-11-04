@@ -70,21 +70,28 @@ public class DayTaskServlet extends HttpServlet {
         String Tspentime = request.getParameter("Tspentime");
         String Tweight =  request.getParameter("Tweight");
         String Tstatus =  request.getParameter("Tstatus");
+        String Tcheck = request.getParameter("Tcheck");
         
-        DayTask uptoday = new DayTask();
-        uptoday.setPlanid(Integer.parseInt(Tplan));
-        uptoday.setTaskid(Integer.parseInt(Ttask));
-        uptoday.setSpend(Integer.parseInt(Tspentime));
-        uptoday.setContent(Tcontent);
-        uptoday.setWeight(Integer.parseInt(Tweight));
-        uptoday.setStatus(Tstatus);
+        DayTask upday = new DayTask();
         
-        dtb.upDayTask(uptoday);
+        upday.setPlanid(Integer.parseInt(Tplan));
+        upday.setTaskid(Integer.parseInt(Ttask));
+        upday.setSpend(Integer.parseInt(Tspentime));
+        upday.setContent(Tcontent);
+        upday.setWeight(Integer.parseInt(Tweight));
+        upday.setStatus(Tstatus);
+        
+        if(Tcheck.equalsIgnoreCase("today")){     
+            dtb.upDayTask(upday);
+        }else if (Tcheck.equalsIgnoreCase("tomor")){
+        	dtb.insupNextDayTask(upday);
+        }
+        
             
         DayTask today = new DayTask();
-        today = dtb.getDayTask(uptoday.getPlanid(), "today");
+        today = dtb.getDayTask(upday.getPlanid(), "today");
         DayTask tomor = new DayTask();
-        tomor = dtb.getDayTask(uptoday.getPlanid(), "tomorrow");
+        tomor = dtb.getDayTask(upday.getPlanid(), "tomorrow");
         dtb.closeDBconn(); 
         
         String forward = new String("Plan.jsp");
