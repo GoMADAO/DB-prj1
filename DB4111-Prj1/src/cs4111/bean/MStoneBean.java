@@ -101,6 +101,11 @@ public class MStoneBean {
 		msl.setMStoneList(msarr);
 		return msl;
 	}
+	
+	public void upMileStone(){
+		
+	}
+	
 	public static void main(String[] args){
 		//MStoneBean msb =new MStoneBean();
 		DBConn con = new DBConn();

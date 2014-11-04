@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import cs4111.bean.CourworkBean;
 import cs4111.bean.DayTaskBean;
@@ -46,7 +47,8 @@ public class CourseworkServlet extends HttpServlet {
 //        CourworkList cwl = new CourworkList();
 //        CourworkBean cwb = new CourworkBean();
 //        cwb.reqCouwork(crsid, cwl);
-        
+        HttpSession session = request.getSession();
+        String sid = (String) session.getAttribute("stuid");
         String cwid = (String)request.getParameter("courseworkid");
         
         CourworkBean cwb = new CourworkBean();
@@ -55,7 +57,7 @@ public class CourseworkServlet extends HttpServlet {
         
         PlanBean pb = new PlanBean();
         Plan pl = new Plan();
-        pl = pb.getPlan(cwid);
+        pl = pb.getPlan(cwid,sid);
         pb.closeDBconn();
         
         MStoneList msl = new MStoneList();
@@ -88,7 +90,8 @@ public class CourseworkServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");  
         response.setCharacterEncoding("UTF-8"); 
-        
+        HttpSession session = request.getSession();
+        String sid = (String) session.getAttribute("stuid");
 		String mstonePerc = (String)request.getParameter("mweight");
         String mstoneDesc = (String)request.getParameter("desc");
         String mstoneDDL = (String)request.getParameter("deadline");
@@ -106,13 +109,16 @@ public class CourseworkServlet extends HttpServlet {
         Courwork cw= cwb.getACourwork(cwid);
         cwb.closeDBconn();
         
+        //
+        
         PlanBean pb = new PlanBean();
         Plan pl = new Plan();
-        pl = pb.getPlan(cwid);
+        pl = pb.getPlan(cwid,sid);
         pb.closeDBconn();
         
-        MStoneList msl = new MStoneList();
         MStoneBean msb = new MStoneBean();
+        MStoneList msl = new MStoneList();
+        
         msl = msb.newMstone(mstonePlid, mstoneDDL, mstonePerc, mstoneDesc);
         msb.closeDBconn();
         

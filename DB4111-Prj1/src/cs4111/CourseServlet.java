@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import cs4111.bean.ChapterReqBean;
 import cs4111.bean.CourseReqBean;
@@ -43,7 +44,8 @@ public class CourseServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");  
         response.setCharacterEncoding("UTF-8"); 
-        
+        HttpSession session = request.getSession();
+        String sid = (String) session.getAttribute("stuid");
         String crsid=(String)request.getParameter("courseid");
         
         TAassistsList ta = new TAassistsList();

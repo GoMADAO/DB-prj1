@@ -24,11 +24,12 @@ public class PlanBean {
 		}
 	}
 	
-	public Plan getPlan(String courseworkid){
+	public Plan getPlan(String courseworkid, String studentid){
 		ResultSet rs =null;
 		String sql = new String("SELECT p.plan_id, p.start_date, p.end_date, "
 				+ "p.turn_on FROM PLAN p JOIN is_sche i ON "
-				+ "p.plan_id=i.plan_id WHERE i.coursework_id = "+courseworkid);
+				+ "p.plan_id=i.plan_id WHERE i.coursework_id = "+courseworkid
+				+ " and i.student_id = '" +studentid +"'");
 		Plan pl = new Plan();
 		conn.getConn();
 		rs = conn.doSelect(sql);

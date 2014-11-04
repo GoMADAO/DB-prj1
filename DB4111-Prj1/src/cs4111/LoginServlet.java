@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import cs4111.bean.CourseReqBean;
 import cs4111.bean.CourworkBean;
@@ -68,6 +69,11 @@ public class LoginServlet extends HttpServlet {
         	cwb.getCurWork(cl, cwl);
         	cwb.closeDBconn();
         	
+        	
+        	
+        	
+        	HttpSession session = request.getSession();
+        	session.setAttribute("stuid", stuname);
         	//forward to JSP
             forward="MainPage.jsp";  
             request.setAttribute("stu",stu);

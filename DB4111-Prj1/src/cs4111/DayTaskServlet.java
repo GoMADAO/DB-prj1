@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import cs4111.bean.CourworkBean;
 import cs4111.bean.DayTaskBean;
@@ -47,14 +48,15 @@ public class DayTaskServlet extends HttpServlet {
 		response.setContentType("text/html");  
         response.setCharacterEncoding("UTF-8"); 
         String cwid = (String)request.getParameter("TCid");
-        
+        HttpSession session = request.getSession();
+        String sid = (String) session.getAttribute("stuid");
         CourworkBean cwb = new CourworkBean();
         Courwork cw= cwb.getACourwork(cwid);
         cwb.closeDBconn();
         
         PlanBean pb = new PlanBean();
         Plan pl = new Plan();
-        pl = pb.getPlan(cwid);
+        pl = pb.getPlan(cwid,sid);
         pb.closeDBconn();
         
         MStoneList msl = new MStoneList();
@@ -80,7 +82,8 @@ public class DayTaskServlet extends HttpServlet {
         //System.out.println(Tspentime.length());
         if(Tspentime!=null)
         	upday.setSpend(Integer.parseInt(Tspentime));
-        upday.setContent(Tcontent);
+        if(Tcontent!=null && !Ttask.equals("null"))
+        	upday.setContent(Tcontent);
         if(Tweight!=null)
         	upday.setWeight(Integer.parseInt(Tweight));
         upday.setStatus(Tstatus);
