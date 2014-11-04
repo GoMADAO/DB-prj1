@@ -261,7 +261,7 @@ $(document).ready( function(){
 <script type="text/javascript">
 var myChart = new JSChart('chartcontainer', 'line');
 myChart.setDataJSON('data.json');
-myChart.setSize(800, 500);
+myChart.setSize(1000, 500);
 myChart.setAxisNameX('#Days used for each Milestone');
 myChart.setAxisNameY(' ');
 myChart.setTitle('Milestone Chart');
