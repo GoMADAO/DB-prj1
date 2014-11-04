@@ -50,12 +50,12 @@ public class MstoneServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String sid = (String) session.getAttribute("stuid");
         String cwid = (String)request.getParameter("cwid");
-        String mweight = (String)request.getParameter("mweight");
+        String mweight = (String)request.getParameter("mweight").split("\\%")[0];
         String desc = (String)request.getParameter("desc");
         String planid = (String)request.getParameter("planid");
         
         String mstoneid = (String)request.getParameter("mstid");
-        
+       System.out.printf(mweight); 
         
         CourworkBean cwb = new CourworkBean();
         Courwork cw= cwb.getACourwork(cwid);

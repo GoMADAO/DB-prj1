@@ -79,7 +79,6 @@ background: #fc6;
 </form>
 </body>
 
-
 <script>
     $(function () {
         var w = 500;
