@@ -11,10 +11,13 @@ import javax.servlet.http.HttpSession;
 
 import cs4111.bean.CourseReqBean;
 import cs4111.bean.CourworkBean;
+import cs4111.bean.PlanBean;
 import cs4111.bean.StuCheckBean;  
 import cs4111.model.Course;
 import cs4111.model.CourseList;
 import cs4111.model.CourworkList;
+import cs4111.model.Plan;
+import cs4111.model.PlanList;
 import cs4111.model.Student;
 /**
  * Servlet implementation class LoginServlet
@@ -69,8 +72,9 @@ public class LoginServlet extends HttpServlet {
         	cwb.getCurWork(cl, cwl);
         	cwb.closeDBconn();
         	
-        	
-        	
+        	PlanList plist = new PlanList();
+        	PlanBean plb = new PlanBean();
+        	plb.getCurPlan(plist,cwl, stuname);
         	
         	HttpSession session = request.getSession();
         	session.setAttribute("stuid", stuname);
@@ -79,6 +83,7 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("stu",stu);
             request.setAttribute("courselist",cl);
             request.setAttribute("currentwork", cwl);
+            request.setAttribute("planlist", plist);
               
         }else{  
             forward="error.jsp";  

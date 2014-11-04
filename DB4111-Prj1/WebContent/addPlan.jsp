@@ -17,11 +17,7 @@
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script type="text/javascript" src="http://sandbox.runjs.cn/uploads/rs/6/qfkhlovy/jvslider.1.2.js"></script>
 <script type="text/javascript" src="jQuery.setTip.js"></script>  
-      <script type="text/javascript">  
-          $(document).ready(function () {  
-              $("#desc").setTip({defaultValue:"Milestone Description"});  
-          });  
-      </script>  
+  
 <style>
 html, body {
 background: #fff;
@@ -53,7 +49,7 @@ background: #fc6;
 		<input name="descr" id="transD" style="visibility:hidden">
 		<input name="cwid" value=<%=cwid %> style="visibility:hidden">
 		<input name="planid" value=<%=plid %> style="visibility:hidden">
-		<i --%>nput type="submit" onclick="confirm()" style="color:gray; margin:10px 10px 10px 0px; font-size: 18px;display:block;margin:-6px 0 0 0"> --%>
+		<input type="submit" onclick="confirm()" style="color:gray; margin:10px 10px 10px 0px; font-size: 18px;display:block;margin:-6px 0 0 0"> --%>
 		
 </form>
 </body>

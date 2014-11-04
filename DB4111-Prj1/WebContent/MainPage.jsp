@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*" 
-    import="cs4111.model.Course" import="cs4111.model.Courwork" %>
+    import="cs4111.model.Course" import="cs4111.model.Courwork" import="cs4111.model.Plan" %>
 
 <jsp:useBean id="stu" class="cs4111.model.Student" scope="request"/>   
 <jsp:useBean id="courselist" class="cs4111.model.CourseList" scope="request"/> 
-<jsp:useBean id="currentwork" class="cs4111.model.CourworkList" scope="request"/>'
+<jsp:useBean id="currentwork" class="cs4111.model.CourworkList" scope="request"/>
+<jsp:useBean id="planlist" class="cs4111.model.PlanList" scope="request"/>
 
 <jsp:setProperty name="stu" property="*"/> 
 <jsp:setProperty name="courselist" property="*"/>
 <jsp:setProperty name="currentwork" property="*"/>
+<jsp:setProperty name="planlist" property="*"/>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,11 +24,15 @@
 	request.getAttribute("stu");
 	request.getAttribute("courselist");
     String stuname=stu.getStuName();
+    String stuid = stu.getName();
     request.getAttribute("currentwork");
+    request.getAttribute("planlist");
 
     ArrayList<Course> cl = new ArrayList<Course>();
     cl = courselist.getClist();
     
+    ArrayList<Plan> plist = new ArrayList<Plan>();
+    plist = planlist.getPlanList();
     
     ArrayList<Courwork> cwl = new ArrayList<Courwork>();
     cwl = currentwork.getCourworkList();
@@ -59,18 +65,26 @@
  <td width="30%" align="center">Due Date</td>
  <td align="center">Link</td>
  </tr>
- <%int cid = 0;
+ <%int cid = 0; boolean hasplan = false;
    for (int i=0; i<cwl.size(); i++){%>
- <tr>
- <td width="12%" align="center"><a href = <%=request.getContextPath()
- + "/CourseworkServlet?courseworkid="+ cwl.get(i).getWorkId()%>>
- <%=cwl.get(i).getName() %></a></td>
+ <tr> 
+<%		 for(int j=0;j<plist.size();j++){
+ 			if (cwl.get(i).getWorkId()==plist.get(j).getCWid()){
+ 				hasplan=true;
+ 			}
+		}
+ 		if(hasplan){
+ %>
+ <td width="12%" align="center"><a href="<%=request.getContextPath()%>/CourseworkServlet?courseworkid=<%= cwl.get(i).getWorkId()%>"><%= cwl.get(i).getName()%></a>
+ <%}else{ %>
+ <td width="12%" align="center"><%=cwl.get(i).getName()%></td>
+ <%} %>
  <td width="20%" align="center"><%=cwl.get(i).getCoursename()%></td>
  <td width="24%" align="center"><%=cwl.get(i).getRelDate()%></td>
  <td width="30%" align="center"><%=cwl.get(i).getDueDate() %></td>
  <td><a href = <%=cwl.get(i).getLink()%> ><%=cwl.get(i).getLink() %></a></td>
- </tr>
  <%} %>
+ </tr>
  </table>
 </body>
 </html>

@@ -70,12 +70,12 @@ public class PlanBean {
 	public void getCurPlan(PlanList plist, CourworkList cwl, String stuid){
 		ArrayList<Courwork> courworklist = cwl.getCourworkList();
 		ResultSet rs =null;
-		StringBuffer sql = new StringBuffer("SELECT * FROM is_sche sch, plan p WHERE p.plan_id = sch,plan_id AND sch.student_id ="+stuid+" AND sch.coursework_id IN");
+		StringBuffer sql = new StringBuffer("SELECT * FROM is_sche sch, plan p WHERE p.plan_id = sch.plan_id AND sch.student_id ='"+stuid+"' AND sch.coursework_id IN (");
 		for(int i=0; i<courworklist.size();i++){
-			sql.append(courworklist.get(i).getName()+",");
+			sql.append(courworklist.get(i).getWorkId()+",");
 		}
 		sql.deleteCharAt(sql.length()-1);
-		sql.append(" ORDER BY sch.plan_id");
+		sql.append(") ORDER BY sch.plan_id");
 		System.out.println(sql);
 		conn.getConn();
 		rs = conn.doSelect(sql.toString());
@@ -83,11 +83,13 @@ public class PlanBean {
 		try {
 			while(rs.next()){
 				Plan pl =new Plan();
-				pl.setPlanid(Integer.parseInt(rs.getString("p.plan_id")));
-				pl.setStdate(rs.getDate("p.start_date"));
-				pl.setEddate(rs.getDate("p.end_date"));
-				pl.setCWid(Integer.parseInt(rs.getString("sch.coursework_id")));
-				pl.setTurnon(Integer.parseInt(rs.getString("p.turnon")));
+				pl.setPlanid(Integer.parseInt(rs.getString("plan_id")));
+				pl.setStdate(rs.getDate("start_date"));
+				pl.setEddate(rs.getDate("end_date"));
+				pl.setCWid(Integer.parseInt(rs.getString("coursework_id")));
+				if(rs.getString("turn_on")!=null){
+				pl.setTurnon(Integer.parseInt(rs.getString("turn_on")));
+				}
 				planlist.add(pl);
 			}
 			rs.close();
