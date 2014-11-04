@@ -54,9 +54,10 @@ public class MStoneBean {
 		msl.setMStoneList(msarr);
 		return msl;
 	}
-	public void upMstone(String mstoneid, String weight, String desc){
+	public void upMstone(String mstoneid, String weight, String desc, String modif){
+		System.out.printf(modif);
 		String sql = "update mstone set weight = "+weight+", MILESTONE_DESC='"+desc
-				+"' where MILESTONE_ID = "+mstoneid;
+				+"', TIMES_OF_MODIF="+ modif+" where MILESTONE_ID = "+mstoneid;
 		System.out.println(sql);
 		conn.getConn();
 		conn.doUpdate(sql);
@@ -111,9 +112,9 @@ public class MStoneBean {
 	
 
 	
-	public static void main(String[] args){
-		MStoneBean msb =new MStoneBean();
-		String mstoneid="69";
-		msb.upMstone( mstoneid,  "25",  "reading");
-	}
+//	public static void main(String[] args){
+//		MStoneBean msb =new MStoneBean();
+//		String mstoneid="69";
+//		msb.upMstone( mstoneid,  "25",  "reading");
+//	}
 }

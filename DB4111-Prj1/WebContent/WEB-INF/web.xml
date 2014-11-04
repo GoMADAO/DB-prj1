@@ -89,4 +89,14 @@
     <servlet-name>PlanServlet</servlet-name>
     <url-pattern>/PlanServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditMstServlet</display-name>
+    <servlet-name>EditMstServlet</servlet-name>
+    <servlet-class>cs4111.EditMstServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditMstServlet</servlet-name>
+    <url-pattern>/EditMstServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

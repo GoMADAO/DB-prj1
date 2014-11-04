@@ -52,10 +52,10 @@ public class MstoneServlet extends HttpServlet {
         String cwid = (String)request.getParameter("cwid");
         String mweight = (String)request.getParameter("mweight").split("\\%")[0];
         String desc = (String)request.getParameter("desc");
+        String modifi = (String)request.getParameter("modifi");
         String planid = (String)request.getParameter("planid");
         
         String mstoneid = (String)request.getParameter("mstid");
-       System.out.printf(mweight); 
         
         CourworkBean cwb = new CourworkBean();
         Courwork cw= cwb.getACourwork(cwid);
@@ -68,7 +68,7 @@ public class MstoneServlet extends HttpServlet {
 		
         MStoneList msl = new MStoneList();
         MStoneBean msb = new MStoneBean();
-        msb.upMstone(mstoneid, mweight, desc);
+        msb.upMstone(mstoneid, mweight, desc,modifi);
         msl = msb.getMStoneList(pl.getPlanid().toString());   
         msb.closeDBconn();
         

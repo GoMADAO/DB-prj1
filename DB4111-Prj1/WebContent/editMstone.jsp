@@ -21,16 +21,7 @@
           $(document).ready(function () {  
               $("#desc").setTip({defaultValue:"Milestone Description"});  
           });  
-      </script>
-<script>
-function confirm(){
-	var weight_v = document.getElementById('text').innerHTML;
-	document.getElementById('transW').value = weight_v;
-	var desc_v = document.getElementById('desc').value;
-	document.getElementById('transD').value = desc_v;
-	$('form1').submit();
-}
-</script>  
+      </script>  
 <style>
 html, body {
 background: #fff;
@@ -49,6 +40,7 @@ background: #fc6;
 <% String desc = (String)request.getParameter("mstdesc");%>
 <% String wght = (String)request.getParameter("mstwght");%>
 <% String idnum = (String)request.getParameter("mstid");%>
+<% String modifi = (String)request.getParameter("mstmodif");%>
 <% String plid = (String)request.getParameter("planid");%>
 <% String cwid = (String)request.getParameter("cwid");%> 
 <%-- <!-- 要传过来的值！！ -->
@@ -70,15 +62,26 @@ background: #fc6;
 		<textarea id="desc" name="descinput" class="fn setTip" style="width:630px; height:200px; display:block;"><%=desc %></textarea>
 		<input name="mweight" id="transW" style="visibility:hidden">
 		<input name="desc" id="transD" style="visibility:hidden">
+		<input name="modifi" id="transM" style="visibility:hidden" value=<%=modifi %>>
 		
 		 <input name="cwid" value=<%=cwid %> style="visibility:hidden">
 		<input name="planid" value=<%=plid %> style="visibility:hidden"> 
 		<input name="mstid" value=<%=idnum %> style="visibility:hidden"> 
 		<!-- 取消注释！！传值进来！ -->
-		<input type="submit" onclick="confirm()" style="color:gray; margin:10px 10px 10px 0px; font-size: 18px;display:block;margin:-6px 0 0 0">
+		<input type="submit" onclick="confirm(<%=modifi %>)" style="color:gray; margin:10px 10px 10px 0px; font-size: 18px;display:block;margin:-6px 0 0 0">
 </form>
 </body>
-
+<script>
+function confirm(mod){
+	var weight_v = document.getElementById('text').innerHTML;
+	document.getElementById('transW').value = weight_v;
+	var desc_v = document.getElementById('desc').value;
+	document.getElementById('transD').value = desc_v;
+	var modi=parseInt(mod);
+	document.getElementById('transM').value = String(modi+1); 
+	$('form1').submit();
+}
+</script>
 <script>
     $(function () {
         var w = 500;

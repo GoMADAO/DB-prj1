@@ -97,8 +97,9 @@ Date date=plan.getStdate();
 <%
 
 for (int i=0; i<msl.size();i++){
+	//System.out.println(msl.get(i).getTimesmodif());
 	out.print("<a href=\"editMstone.jsp?mstid="+msl.get(i).getMstoneid()
-			+"&planid="+plan.getPlanid()+"&mstwght="+msl.get(i).getWeight()
+			+"&planid="+plan.getPlanid()+"&mstwght="+msl.get(i).getWeight()+"&mstmodif="+msl.get(i).getTimesmodif()
 			+"&cwid="+cwid+"&mstddl="+msl.get(i).getDeadline()+"&mstdesc="+msl.get(i).getDesc()
 			+"\" class=\"css3-button css3-button_blue-g\" id=\"blk"
 		+msl.get(i).getMstoneid()+"\" data-tooltip=\"Weight: "
