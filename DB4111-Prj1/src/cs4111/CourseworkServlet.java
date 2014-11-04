@@ -62,7 +62,7 @@ public class CourseworkServlet extends HttpServlet {
         
         MStoneList msl = new MStoneList();
         MStoneBean msb = new MStoneBean();
-        msl = msb.getMStoneList(pl.getPlanid().toString());
+        msl = msb.getMStoneList(String.valueOf(pl.getPlanid()));
         msb.closeDBconn();
         
         DayTaskBean dtb = new DayTaskBean();
