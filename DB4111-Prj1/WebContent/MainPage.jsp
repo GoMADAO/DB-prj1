@@ -34,7 +34,7 @@
 
  %>  
    
- <div style='padding:10px; color:red; font-size:30px; font-family: Courier New'>WELCOME, <%=stuname %>!</div>
+ <div style="padding:10px; color:red; font-size:30px; font-family: Courier New">WELCOME, <%=stuname %>!</div>
  <table border="1" cellpadding="10" cellspacing="2">
  <tr style='font-weight:bold' style='font-family: Courier New'>
  <td width="12%" align="center">Course NO.</td>
