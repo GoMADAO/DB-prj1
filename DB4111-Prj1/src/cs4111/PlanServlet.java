@@ -49,29 +49,51 @@ public class PlanServlet extends HttpServlet {
         String cwid = (String)request.getParameter("cwid");
         HttpSession session = request.getSession();
         String sid = (String) session.getAttribute("stuid");
-        String mweight = request.getParameter("mweight");
-        String descr = request.getParameter("descr");
-        String planid = request.getParameter("planid");
+        String startd = request.getParameter("pstdate");
+        String endd = request.getParameter("peddate");
         
+        System.out.println(startd);
         
-       
-        
-        
+        String[] sddl = startd.split("\\,");
+		String sdayMon = sddl[0]; 
+		String spcYear = sddl[1];
+		String syear = spcYear.split("\\ ")[1];
+		String[] sdm = sdayMon.split("\\ ");
+		String sday = sdm[0]; String smon = sdm[1];
+		if (sday.length()==1){
+			sday = "0"+sday;
+		}
+		StringBuffer sb1 = new StringBuffer();
+		sb1.append(smon).append("-").append(sday).append("-").append(syear);
+		System.out.println("start:"+smon+"-"+sday+"-"+syear);
+		
+		String[] eddl = endd.split("\\,");
+		String edayMon = eddl[0]; 
+		String espcYear = eddl[1];
+		String eyear = espcYear.split("\\ ")[1];
+		String[] edm = edayMon.split("\\ ");
+		String eday = edm[0]; String emon = edm[1];
+		if (eday.length()==1){
+			eday = "0"+eday;
+		}
+		StringBuffer sb2 = new StringBuffer();
+		sb2.append(emon).append("-").append(eday).append("-").append(eyear);
+		System.out.println("end:"+emon+"-"+eday+"-"+eyear);
+		
+		PlanBean pb = new PlanBean();
+		pb.insPlan(sb1.toString(), sb2.toString(), cwid, sid);
+		pb.closeDBconn();
+		
         CourworkBean cwb = new CourworkBean();
         Courwork cw= cwb.getACourwork(cwid);
         cwb.closeDBconn();
-        
-        
-        
-        
-        PlanBean pb = new PlanBean();
+                
         Plan pl = new Plan();
         //pl.setEddate(date);
         
-        
-        
-        pl = pb.getPlan(cwid,sid);
-        pb.closeDBconn();
+        PlanBean pb1 = new PlanBean();
+        pl = pb1.getPlan(cwid,sid);
+        pb1.closeDBconn();
         
         MStoneList msl = new MStoneList();
         MStoneBean msb = new MStoneBean();

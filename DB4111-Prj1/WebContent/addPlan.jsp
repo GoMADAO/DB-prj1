@@ -37,23 +37,22 @@ background: #fc6;
 </head>
 <body>
 <%-- 界面传值！！--%>
-<%--<% String cwname = (String)request.getParameter("cwname");%>--%>
+<% String cwname = request.getParameter("cwname");
+	String cwid =request.getParameter("cwid");
+%>
 
 <!-- 测试用！！ -->
-<%String cwname = "Introduction to Database II"; %>
+<%-- <%String cwname = "Introduction to Database II"; %> --%>
 
 <h1 style="color:#216fa0">New Coursework Plan</h1>
 <p style="color:#216fa0;margin:-45px 0 0 0;">for course: <%=cwname %></p>
 <form action="PlanServlet" method="post" name="form1">
-<fieldset><div style="width:630px"><input name="stdate" id="stdate" class="fieldset__input js__datepicker" type="text" placeholder="Start Date&hellip;"></div></fieldset>
-<fieldset><div style="width:630px"><input name="eddate" id="eddate" class="fieldset__input js__datepicker" type="text" placeholder="End Date&hellip;"></div></fieldset>
+<fieldset><div style="width:630px"><input name="pstdate" id="stdate" class="fieldset__input js__datepicker" type="text" placeholder="Start Date&hellip;"></div></fieldset>
+<fieldset><div style="width:630px"><input name="peddate" id="eddate" class="fieldset__input js__datepicker" type="text" placeholder="End Date&hellip;"></div></fieldset>
 		<input type="submit" style="color:gray; margin:10px 10px 10px 0px; font-size: 18px;display:block;margin:-6px 0 0 0">
 		<!-- 给servlet传值！！ -->
-		<%-- <input name="mweight" id="transW" style="visibility:hidden">
-		<input name="descr" id="transD" style="visibility:hidden">
-		<input name="cwid" value=<%=cwid %> style="visibility:hidden">
-		<input name="planid" value=<%=plid %> style="visibility:hidden">
-		<i --%>nput type="submit" onclick="confirm()" style="color:gray; margin:10px 10px 10px 0px; font-size: 18px;display:block;margin:-6px 0 0 0"> --%>
+		<input name ="cwid" style="visibility:hidden" value =<%=cwid%>>
+		  
 		
 </form>
 </body>
