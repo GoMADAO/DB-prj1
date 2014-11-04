@@ -2,8 +2,12 @@ package cs4111.bean;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import cs4111.model.Courwork;
+import cs4111.model.CourworkList;
 import cs4111.model.Plan;
+import cs4111.model.PlanList;
 import cs4111.util.DBConn;
 
 public class PlanBean {
@@ -62,6 +66,38 @@ public class PlanBean {
 		}
 		return pl;
 	}
+	
+	public void getCurPlan(PlanList plist, CourworkList cwl, String stuid){
+		ArrayList<Courwork> courworklist = cwl.getCourworkList();
+		ResultSet rs =null;
+		StringBuffer sql = new StringBuffer("SELECT * FROM is_sche sch, plan p WHERE p.plan_id = sch,plan_id AND sch.student_id ="+stuid+" AND sch.coursework_id IN");
+		for(int i=0; i<courworklist.size();i++){
+			sql.append(courworklist.get(i).getName()+",");
+		}
+		sql.deleteCharAt(sql.length()-1);
+		sql.append(" ORDER BY sch.plan_id");
+		System.out.println(sql);
+		conn.getConn();
+		rs = conn.doSelect(sql.toString());
+		ArrayList<Plan> planlist = new ArrayList<Plan>();
+		try {
+			while(rs.next()){
+				Plan pl =new Plan();
+				pl.setPlanid(Integer.parseInt(rs.getString("p.plan_id")));
+				pl.setStdate(rs.getDate("p.start_date"));
+				pl.setEddate(rs.getDate("p.end_date"));
+				pl.setCWid(Integer.parseInt(rs.getString("sch.coursework_id")));
+				pl.setTurnon(Integer.parseInt(rs.getString("p.turnon")));
+				planlist.add(pl);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		plist.setPlanList(planlist);
+	}
+	
 	public static void main(String[] args){
 		PlanBean p = new PlanBean();
 		Plan pl = new Plan();
