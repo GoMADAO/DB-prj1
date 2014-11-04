@@ -50,10 +50,10 @@ background: #fc6;
 		<input type="submit" style="color:gray; margin:10px 10px 10px 0px; font-size: 18px;display:block;margin:-6px 0 0 0">
 		<!-- 给servlet传值！！ -->
 		<%-- <input name="mweight" id="transW" style="visibility:hidden">
-		<input name="desc" id="transD" style="visibility:hidden">
+		<input name="descr" id="transD" style="visibility:hidden">
 		<input name="cwid" value=<%=cwid %> style="visibility:hidden">
 		<input name="planid" value=<%=plid %> style="visibility:hidden">
-		<input type="submit" onclick="confirm()" style="color:gray; margin:10px 10px 10px 0px; font-size: 18px;display:block;margin:-6px 0 0 0"> --%>
+		<i --%>nput type="submit" onclick="confirm()" style="color:gray; margin:10px 10px 10px 0px; font-size: 18px;display:block;margin:-6px 0 0 0"> --%>
 		
 </form>
 </body>
