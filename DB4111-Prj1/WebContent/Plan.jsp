@@ -163,7 +163,7 @@ if(tomor.isEmpty()){
  <td colspan = "2">Plan for Tomorrow</td>
  </tr> --%>
 
-<table border="1" cellpadding="10" cellspacing="2">
+<table border="1" cellpadding="10" cellspacing="2" width = 80%>
 <tr>
  <td>Daily Task: <%=today.getDate()%> </td>
  <td>Plan for Tomorrow</td>
@@ -174,27 +174,39 @@ if(tomor.isEmpty()){
 Content<input name="Tcontent" value=<%=today.getContent()%> type="text" style = "display:block">
 Spent time<input name="Tspentime" value = <%=today.getSpend()%> type ="text" style = "display:block">
 Progress<input name="Tweight" value =<%=today.getWeight()%> type="text" style = "display:block">
-Status<input name="Tstatus" value=<%=today.getStatus()%> type="text" style = "display:block">
+<%-- Status<input name="Tstatus" value=<%=today.getStatus()%> type="text" style = "display:block"> --%>
+Finished
+<input type="radio" id="finished" name="status_rad" value="finished" />
+Unfinished
+<input type="radio" id="unfinished" checked="checked" name="status_rad" value="unfinished" />
+</form>
+<input name="Tstatus" id="status" type="hidden" value="unfinished">
 <input name="Tplan" type ="hidden" value=<%=today.getPlanid()%>>
 <input name="Ttask" type ="hidden" value=<%=today.getTaskid()%>>
 <input name="TCid" type="hidden" value=<%=cwid %>>
-<input type="submit">
+<input type="submit" onclick="getstatus()">
 </form>
 </td>
 <td>
 <form action = "CourseworkServlet" method ="post" name="form2">
-Content <input  type="text" disabled="disabled" style = "display:block" value=<%=nextCon %>>
-Spent time<input  type="text" disabled="disabled" style = "display:block" value = <%=nextSep %>>
-Progress <input  type="text" disabled="disabled" style = "display:block" value =<%=nextWei %>> 
-Status <input  type="text" disabled="disabled" style = "display:block" value=<%=nextSta%>> 
+Content <input  type="text" style = "display:block" value=<%=nextCon %>>
+Spent time<input  type="text" style = "display:block" value = <%=nextSep %>>
+Progress <input  type="text" style = "display:block" value =<%=nextWei %>> 
+Status <input  type="text" style = "display:block" value=<%=nextSta%>> 
 </form>
 </td>
 </tr>
 </table>
-
-
-
 </body>
+
+<script>
+function getstatus(){
+	if(document.getElementById('finished').checked = "checked"){
+		document.getElementById('status').value = 'finished';
+	}
+}
+</script>
+
 <script>
 $(document).ready( function(){
 	<%
