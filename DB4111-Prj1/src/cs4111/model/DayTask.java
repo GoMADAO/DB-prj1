@@ -62,4 +62,10 @@ public class DayTask {
 		return false;
 		
 	}
+	public static void main(String[] args){
+		DayTask dt =   new DayTask();
+		dt.setDate(null);
+		dt.setPlanid(null);
+		dt.getDate();
+	}
 }

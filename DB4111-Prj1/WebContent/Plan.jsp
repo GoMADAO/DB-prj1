@@ -179,20 +179,27 @@ Finished
 <input type="radio" id="finished" name="status_rad" value="finished" />
 Unfinished
 <input type="radio" id="unfinished" checked="checked" name="status_rad" value="unfinished" />
-</form>
+
 <input name="Tstatus" id="status" type="hidden" value="unfinished">
 <input name="Tplan" type ="hidden" value=<%=today.getPlanid()%>>
 <input name="Ttask" type ="hidden" value=<%=today.getTaskid()%>>
 <input name="TCid" type="hidden" value=<%=cwid %>>
+<input name="Tcheck" type="hidden" value="today">
 <input type="submit" onclick="getstatus()">
 </form>
 </td>
 <td>
-<form action = "CourseworkServlet" method ="post" name="form2">
+<form action = "DayTaskServlet" method ="post" name="form2">
 Content <input  type="text" style = "display:block" value=<%=nextCon %>>
 Spent time<input  type="text" style = "display:block" value = <%=nextSep %>>
 Progress <input  type="text" style = "display:block" value =<%=nextWei %>> 
 Status <input  type="text" style = "display:block" value=<%=nextSta%>> 
+<input name="TCid" type="hidden" value=<%=cwid %>>
+<input name="Tcheck" type="hidden" value="tomor">
+<input name="Tplan" type ="hidden" value=<%=today.getPlanid()%>>
+<input name="Ttask" type ="hidden" value=<%=tomor.getTaskid()%>>
+<input type="submit" >
+
 </form>
 </td>
 </tr>

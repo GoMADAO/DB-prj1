@@ -72,6 +72,43 @@ public class DayTaskBean {
 		System.out.println(sql);
 		conn.doUpdate(sql);
 	}
+	public void insupNextDayTask(DayTask dt){
+		String sql;
+		if(dt.getPlanid()==null)
+			return;
+		String wei;
+		if(dt.getWeight()==null){
+			wei="0";
+		}else{
+			wei = dt.getWeight().toString() ;
+		}
+		String spt;
+		if(dt.getSpend()==null){
+			spt="0";
+		}else{
+			spt=dt.getSpend().toString();
+		}
+		if (dt.getTaskid()==null){
+			
+			sql = "insert into day_task (PLAN_ID,WEIGHT,TASK_CONTENT,STATUS, Task_date) values ("
+					+ dt.getPlanid() + ", "+ wei+ ", '" + dt.getContent() +"', "
+							+ "61, sysdate+1 )";
+		}else{
+			String status="61";
+			
+			
+			if(dt.getStatus().equalsIgnoreCase("finished")){
+				status = "60";
+			}
+			sql = "update day_task set weight = "+dt.getWeight() + ", task_content ='" 
+					+ dt.getContent() + "', status = "+status +
+					", spent_time = "+ spt +" where task_id = " +dt.getTaskid();
+		}
+		conn.getConn();
+		conn.doUpdate(sql);
+		System.out.println("new function:"+sql);
+		
+	}
 	
 	
 	public static void main(String[] args){
@@ -83,10 +120,12 @@ public class DayTaskBean {
 		String s ;
 		if(dt2.getContent()==null && dt2.getDate()==null)
 			System.out.println("tomorrow not plan");
-		if(dt2.isEmpty())
-			System.out.println("function check");
-		s=dt1.getStatus();
-		System.out.println(s);
+//		if(dt2.isEmpty())
+//			System.out.println("function check");
+//		s=dt1.getStatus();
+		//System.out.println(s);
+		dtb.insupNextDayTask(dt1);
+		dtb.insupNextDayTask(dt2);
 		System.out.println(dt2.getDate());
 	}
 }
