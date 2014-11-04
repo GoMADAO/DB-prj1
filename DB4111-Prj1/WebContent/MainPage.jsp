@@ -62,8 +62,9 @@
  <td width="12%" align="center">Name</td>
  <td width="20%" align="center">Course</td>
  <td width="24%" align="center">Release Date</td>
- <td width="30%" align="center">Due Date</td>
+ <td width="20%" align="center">Due Date</td>
  <td align="center">Link</td>
+ <td>New plan</td>
  </tr>
  <%int cid = 0; boolean hasplan = false;
    for (int i=0; i<cwl.size(); i++){%>
@@ -83,7 +84,12 @@
  <td width="24%" align="center"><%=cwl.get(i).getRelDate()%></td>
  <td width="30%" align="center"><%=cwl.get(i).getDueDate() %></td>
  <td><a href = <%=cwl.get(i).getLink()%> ><%=cwl.get(i).getLink() %></a></td>
- <%} %>
+ <%if(hasplan){%>
+ <td><a href=<%=request.getContextPath()+"/addPlan.jsp?cwid="+cwl.get(i).getWorkId()+"&cwname="+cwl.get(i).getCoursename()%>>Add Plan</a></td>
+ <%}else{%>
+ <td>delete plan</td>
+  <%}%>
+  <%}%>
  </tr>
  </table>
 </body>
