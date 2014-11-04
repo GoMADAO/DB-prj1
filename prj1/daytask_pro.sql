@@ -18,9 +18,12 @@ Cursor csr_daytask is
  on day.plan_id = s.plan_id
  left join is_assn a
  on s.coursework_id = a.coursework_id
+left join day_task t
+ on t.plan_id = s.plan_id
  where sysdate<a.due_date
 and (day.weight < 100
      or day.weight is null)
+and t.task_id is null
    --and day.weight is null
  order by s.plan_id asc;
 begin 

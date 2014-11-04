@@ -1,12 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*" import="cs4111.model.MStone" import="cs4111.model.Courwork"
+    pageEncoding="UTF-8" import="java.util.*" import="cs4111.model.MStone" 
+    import="cs4111.model.Courwork"
 %>
 <%@page import="org.json.simple.JSONObject"%>
 <%@ page import="java.io.*"%>
     <jsp:useBean id="courwork" class="cs4111.model.Courwork" scope="request"/>
 <jsp:useBean id="plan" class="cs4111.model.Plan" scope="request"/>
 <jsp:useBean id="mstonelist" class="cs4111.model.MStoneList" scope="request"/>
+<jsp:useBean id="today" class="cs4111.model.DayTask" scope="request"/>
+<jsp:useBean id="tomor" class="cs4111.model.DayTask" scope="request"/>
 
+
+
+ 
+<jsp:setProperty name="tomor" property="*"/>
+
+
+ 
+<jsp:setProperty name="today" property="*"/> 
 <jsp:setProperty name="mstonelist" property="*"/> 
 <jsp:setProperty name="plan" property="*"/> 
 <jsp:setProperty name="courwork" property="*"/> 
@@ -57,6 +68,8 @@
 <% request.getAttribute("courwork");
 	request.getAttribute("plan");
 	request.getAttribute("mstonelist");
+	request.getAttribute("today");
+	request.getAttribute("tomor");
 	String cwid = (String)request.getAttribute("cwid");
 %>
 <div style='padding:10px; color:black; font-size:15px; font-family: Courier New'>
@@ -77,34 +90,26 @@ Start Date: <%=plan.getStdate()%>  &nbsp; End Date: <%=plan.getEddate()%></div>
 <div style='padding:10px; color:black; font-size:15px; font-family: Courier New; font-weight:bold'>
 Milestone</div>
 
-<!-- xcharts -->
-<!-- <figure style="width: 800px; height: 300px;" id="myChart"></figure> -->
-<input type="button" value="New"  onclick="location.href='addMstone.jsp?cwid='+<%=cwid %>+'&planid='+<%=plan.getPlanid() %>">
-
-<div id = "chartcontainer"></div>
-
-<%-- <% ArrayList<MStone> msl =new ArrayList<MStone>(mstonelist.getMStoneList());
- for (int i=0; i<msl.size();i++){
-	out.println(msl.get(i).getMstoneid()+"</br>");
-	out.println(msl.get(i).getDesc()+"</br>");
-} 
-%> --%>
-
 <% 
 ArrayList<MStone> msl =new ArrayList<MStone>(mstonelist.getMStoneList());
 Date date=plan.getStdate();
 %>
 <%
+
 for (int i=0; i<msl.size();i++){
-	out.print("<a href=\"#\" class=\"css3-button css3-button_blue-g\" id=\"blk"+msl.get(i).getMstoneid()+"\" data-tooltip=\"Weight: "+msl.get(i).getWeight()+"%\">Milestone"+msl.get(i).getMstoneid()+"</a>");
+	out.print("<a href=\"#\" class=\"css3-button css3-button_blue-g\" id=\"blk"
+		+msl.get(i).getMstoneid()+"\" data-tooltip=\"Weight: "
+		+msl.get(i).getWeight()+"%\">Milestone"
+		+msl.get(i).getMstoneid()+"</a>");
 }
 %>
-<!-- <a href="#" class="css3-button css3-button_blue-g" id="example" data-tooltip="Weight: 20%">Milestone 1</a>
-<a href="#" class="css3-button css3-button_blue-g" id="example1" data-tooltip="Weight: 30%">Milestone 1</a> -->
+<div id = "chartcontainer"></div>
+<input type="button" value="New"  onclick="location.href='addMstone.jsp?cwid='+<%=cwid %>+'&planid='+<%=plan.getPlanid() %>">
+
 <%
  try{
    String filename = request.getRealPath("data.json");
-   File fp=new File(filename);
+ 	File fp= new File(filename);
    PrintWriter pw = new PrintWriter(new FileOutputStream(filename),false); 
    String str = "{\"JSChart\" : { \"datasets\" : [ {\"type\" : \"line\",\"data\" : [{\"unit\" : \"0\",\"value\" : \"0\"},";
    int wt = 0;
@@ -120,8 +125,6 @@ for (int i=0; i<msl.size();i++){
 	   }
    } 
    str = str+"] } ] }}";
-    /* String str="{\"JSChart\" : { \"datasets\" : [ {\"type\" : \"line\",\"data\" : [ {\"unit\" : \"10\",\"value\" : \"20\"},{\"unit\" : \"20\",\"value\" : \"30\"},{\"unit\" : \"40\",\"value\" : \"10\"} ] } ] }}"; */ 
-	//out.println(str);
    pw.println(str);
    pw.close();
    //out.println("已将内容成功写入到文件！");
@@ -130,16 +133,68 @@ for (int i=0; i<msl.size();i++){
 }
 %>
 
-</body>
-<%-- <script>
-function mstblock(){
-<% for (int i=0; i<msl.size();i++){
-String astr = "<a href=\"#\" class=\"css3-button css3-button_blue-g\" id=\"blk"+msl.get(i).getMstoneid()+"\" data-tooltip=\"Weight: "+msl.get(i).getWeight()+"%\">Milestone"+msl.get(i).getMstoneid()+"</a>";
-%>
-document.getElementById("mstblk").innerHTML(<%=astr%>);
-<%}%>
+<div style='padding:10px; color:black; font-size:15px; font-family: Courier New; font-weight:bold'>Daily Tasks<%=request.getContextPath()%></div>
+
+<%
+String nextCon;
+String nextDat;
+String nextSep;
+String nextWei;
+String nextSta;
+
+if(tomor.isEmpty()){
+	nextCon ="";
+	nextDat ="";
+	nextSep = "";
+	nextWei = "";
+	nextSta = "";
+}else{
+	nextCon = tomor.getContent();
+	nextDat = tomor.getDate().toString();
+	nextSep = tomor.getSpend().toString();
+	nextWei = tomor.getWeight().toString();
+	nextSta = tomor.getStatus().toString();
 }
-</script> --%>
+		
+	%>
+<%-- <table width="100%">
+ <tr>
+ <td colspan="2"  width ="50%">Daily Task: <%=today.getDate()%> </td>
+ <td colspan = "2">Plan for Tomorrow</td>
+ </tr> --%>
+
+<table border="1" cellpadding="10" cellspacing="2">
+<tr>
+ <td>Daily Task: <%=today.getDate()%> </td>
+ <td>Plan for Tomorrow</td>
+</tr>
+<tr>
+<td>
+<form action = "DayTaskServlet" method ="post" name="form1" >
+Content<input name="Tcontent" value=<%=today.getContent()%> type="text" style = "display:block">
+Spent time<input name="Tspentime" value = <%=today.getSpend()%> type ="text" style = "display:block">
+Progress<input name="Tweight" value =<%=today.getWeight()%> type="text" style = "display:block">
+Status<input name="Tstatus" value=<%=today.getStatus()%> type="text" style = "display:block">
+<input name="Tplan" type ="hidden" value=<%=today.getPlanid()%>>
+<input name="Ttask" type ="hidden" value=<%=today.getTaskid()%>>
+<input name="TCid" type="hidden" value=<%=cwid %>>
+<input type="submit">
+</form>
+</td>
+<td>
+<form action = "CourseworkServlet" method ="post" name="form2">
+Content <input  type="text" disabled="disabled" style = "display:block" value=<%=nextCon %>>
+Spent time<input  type="text" disabled="disabled" style = "display:block" value = <%=nextSep %>>
+Progress <input  type="text" disabled="disabled" style = "display:block" value =<%=nextWei %>> 
+Status <input  type="text" disabled="disabled" style = "display:block" value=<%=nextSta%>> 
+</form>
+</td>
+</tr>
+</table>
+
+
+
+</body>
 <script>
 $(document).ready( function(){
 	<%
@@ -153,7 +208,7 @@ $(document).ready( function(){
 <script type="text/javascript">
 var myChart = new JSChart('chartcontainer', 'line');
 myChart.setDataJSON('data.json');
-myChart.setSize(600, 400);
+myChart.setSize(800, 500);
 myChart.setAxisNameX('#Days used for each Milestone');
 myChart.setAxisNameY(' ');
 myChart.setTitle('Milestone Chart');

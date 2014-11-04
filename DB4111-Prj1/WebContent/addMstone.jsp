@@ -54,7 +54,7 @@ background: #fc6;
 		<div id="slider"></div>
 		<div id="text" style="margin:0 0 20px 0">100%</div>
 		<textarea id="desc" name="descinput" class="fn setTip" style="width:630px; height:200px; display:block;"></textarea>
-		<input name="weight" id="transW" style="visibility:hidden">
+		<input name="mweight" id="transW" style="visibility:hidden">
 		<input name="desc" id="transD" style="visibility:hidden">
 		<input name="cwid" value=<%=cwid %> style="visibility:hidden">
 		<input name="planid" value=<%=plid %> style="visibility:hidden">
@@ -85,11 +85,11 @@ background: #fc6;
             percent: 100,
             slide: function (percent) {
                 var np = percent / 100;
-                $('#text').html(Math.floor(percent)+"%");
+                $('#text').html(String(Math.floor(percent))+"%");
             },
             click: function (percent) {
                 var np = percent / 100;
-                $('#text').html(Math.floor(percent)+"%");
+                $('#text').html(String(Math.floor(percent))+"%");
             }
         });
         //参数（全部为可选项）说明：

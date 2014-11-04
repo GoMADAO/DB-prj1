@@ -2,6 +2,7 @@ package cs4111;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,10 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cs4111.bean.CourworkBean;
+import cs4111.bean.DayTaskBean;
 import cs4111.bean.MStoneBean;
 import cs4111.bean.PlanBean;
 import cs4111.model.Courwork;
 import cs4111.model.CourworkList;
+import cs4111.model.DayTask;
 import cs4111.model.MStoneList;
 import cs4111.model.Plan;
 
@@ -60,13 +63,20 @@ public class CourseworkServlet extends HttpServlet {
         msl = msb.getMStoneList(pl.getPlanid().toString());
         msb.closeDBconn();
         
-        
+        DayTaskBean dtb = new DayTaskBean();
+        DayTask today = new DayTask();
+        today = dtb.getDayTask(pl.getPlanid(), "today");
+        DayTask tomor = new DayTask();
+        tomor = dtb.getDayTask(pl.getPlanid(), "tomorrow");
+        dtb.closeDBconn();
         
         String forward = new String("Plan.jsp");
         request.setAttribute("plan", pl);
         request.setAttribute("courwork",cw);
         request.setAttribute("mstonelist", msl);
         request.setAttribute("cwid", cwid);
+        request.setAttribute("today", today);
+        request.setAttribute("tomor", tomor);
         RequestDispatcher rd=request.getRequestDispatcher(forward);
         rd.forward(request,response);
 	}
@@ -79,7 +89,7 @@ public class CourseworkServlet extends HttpServlet {
 		response.setContentType("text/html");  
         response.setCharacterEncoding("UTF-8"); 
         
-		String mstonePerc = (String)request.getParameter("weight");
+		String mstonePerc = (String)request.getParameter("mweight");
         String mstoneDesc = (String)request.getParameter("desc");
         String mstoneDDL = (String)request.getParameter("deadline");
         String mstonePlid = (String)request.getParameter("planid");
@@ -91,7 +101,7 @@ public class CourseworkServlet extends HttpServlet {
 //        out.println(mstoneDDL);
 //        out.println(mstonePlid);
 //        out.println(cwid);
-        
+       
         CourworkBean cwb = new CourworkBean();
         Courwork cw= cwb.getACourwork(cwid);
         cwb.closeDBconn();
@@ -106,12 +116,20 @@ public class CourseworkServlet extends HttpServlet {
         msl = msb.newMstone(mstonePlid, mstoneDDL, mstonePerc, mstoneDesc);
         msb.closeDBconn();
         
-
+        DayTaskBean dtb = new DayTaskBean();        
+        DayTask today = new DayTask();
+        today = dtb.getDayTask(pl.getPlanid(), "today");
+        DayTask tomor = new DayTask();
+        tomor = dtb.getDayTask(pl.getPlanid(), "tomorrow");
+        dtb.closeDBconn();
+                
         String forward = new String("Plan.jsp");
         request.setAttribute("plan", pl);
         request.setAttribute("courwork",cw);
         request.setAttribute("mstonelist", msl);
         request.setAttribute("cwid", cwid);
+        request.setAttribute("today", today);
+        request.setAttribute("tomor", tomor);
         RequestDispatcher rd=request.getRequestDispatcher(forward);
         rd.forward(request,response);
 	}
