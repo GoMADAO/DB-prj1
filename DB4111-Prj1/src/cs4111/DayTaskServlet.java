@@ -75,10 +75,14 @@ public class DayTaskServlet extends HttpServlet {
         DayTask upday = new DayTask();
         
         upday.setPlanid(Integer.parseInt(Tplan));
-        upday.setTaskid(Integer.parseInt(Ttask));
-        upday.setSpend(Integer.parseInt(Tspentime));
+        if(Ttask.length()!=0 && !Ttask.equals("null"))
+        	upday.setTaskid(Integer.parseInt(Ttask));
+        //System.out.println(Tspentime.length());
+        if(Tspentime!=null)
+        	upday.setSpend(Integer.parseInt(Tspentime));
         upday.setContent(Tcontent);
-        upday.setWeight(Integer.parseInt(Tweight));
+        if(Tweight!=null)
+        	upday.setWeight(Integer.parseInt(Tweight));
         upday.setStatus(Tstatus);
         
         if(Tcheck.equalsIgnoreCase("today")){     

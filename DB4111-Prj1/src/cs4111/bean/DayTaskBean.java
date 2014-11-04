@@ -74,18 +74,35 @@ public class DayTaskBean {
 	}
 	public void insupNextDayTask(DayTask dt){
 		String sql;
-		
+		if(dt.getPlanid()==null)
+			return;
+		String wei;
+		if(dt.getWeight()==null){
+			wei="0";
+		}else{
+			wei = dt.getWeight().toString() ;
+		}
+		String spt;
+		if(dt.getSpend()==null){
+			spt="0";
+		}else{
+			spt=dt.getSpend().toString();
+		}
 		if (dt.getTaskid()==null){
-			sql = "insert into day_task (PLAN_ID,WEIGHT,TASK_CONTENT,STATUS) values ("
-					+ dt.getPlanid() + ", "+ dt.getWeight() + ", '" + dt.getContent() +"', "
-							+ "61 )";
+			
+			sql = "insert into day_task (PLAN_ID,WEIGHT,TASK_CONTENT,STATUS, Task_date) values ("
+					+ dt.getPlanid() + ", "+ wei+ ", '" + dt.getContent() +"', "
+							+ "61, sysdate+1 )";
 		}else{
 			String status="61";
+			
+			
 			if(dt.getStatus().equalsIgnoreCase("finished")){
 				status = "60";
 			}
-			sql = "update day_task set weight ="+dt.getWeight() + ", task_content ='" 
-					+ dt.getContent() + "', status = "+status +" where task_id =" +dt.getTaskid();
+			sql = "update day_task set weight = "+dt.getWeight() + ", task_content ='" 
+					+ dt.getContent() + "', status = "+status +
+					", spent_time = "+ spt +" where task_id = " +dt.getTaskid();
 		}
 		conn.getConn();
 		conn.doUpdate(sql);
