@@ -3,11 +3,15 @@ package cs4111.model;
 import java.sql.Date;
 
 public class Plan {
+	private Integer cwid;
 	private Integer planid;
 	private Date stdate;
 	private Date eddate;
 	private Integer turnon;
 	
+	public void setCWid(Integer id){
+		this.cwid = id;
+	}
 	public void setPlanid(Integer id){
 		this.planid = id;
 	}
@@ -19,6 +23,9 @@ public class Plan {
 	}
 	public void setTurnon(Integer turnon){
 		this.turnon = turnon;
+	}
+	public Integer getCWid(){
+		return this.cwid;
 	}
 	public Integer getPlanid(){
 		return this.planid;
