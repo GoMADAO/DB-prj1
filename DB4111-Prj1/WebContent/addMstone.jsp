@@ -49,7 +49,8 @@ background: #fc6;
 <% String cwid = (String)request.getParameter("cwid");%>
 <h1 style="color:#216fa0">New Milestone</h1>
 <form action="CourseworkServlet" method="post" name="form1">
-<fieldset><div style="width:630px"><input name="deadline" class="fieldset__input js__datepicker" type="text" placeholder="Milestone Deadline&hellip;"></div></fieldset>
+<fieldset>
+		<div style="width:630px"><input name="deadline" class="fieldset__input js__datepicker" type="text" placeholder="Milestone Deadline&hellip;"></div></fieldset>
 		<div style="color:gray">Milestone Weight (0-100%)</div>
 		<div id="slider"></div>
 		<div id="text" style="margin:0 0 20px 0">100%</div>

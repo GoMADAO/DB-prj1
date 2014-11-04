@@ -163,42 +163,48 @@ if(tomor.isEmpty()){
  <td colspan = "2">Plan for Tomorrow</td>
  </tr> --%>
 
-<table border="1" cellpadding="10" cellspacing="2" width = 80%>
+<table border="1" cellpadding="10" cellspacing="2" width = 100%>
 <tr>
- <td>Daily Task: <%=today.getDate()%> </td>
- <td>Plan for Tomorrow</td>
+ <td width="50%">Daily Task: <%=today.getDate()%> </td>
+ <td width="50%">Plan for Tomorrow</td>
 </tr>
 <tr>
-<td>
+<td width="50%">
 <form action = "DayTaskServlet" method ="post" name="form1" >
 Content<input name="Tcontent" value=<%=today.getContent()%> type="text" style = "display:block">
 Spent time<input name="Tspentime" value = <%=today.getSpend()%> type ="text" style = "display:block">
-Progress<input name="Tweight" value =<%=today.getWeight()%> type="text" style = "display:block">
+Progress<div><input name="Tweight" value =<%=today.getWeight()%> type="text">%</div>
 <%-- Status<input name="Tstatus" value=<%=today.getStatus()%> type="text" style = "display:block"> --%>
 Finished
 <input type="radio" id="finished" name="status_rad" value="finished" />
 Unfinished
-<input type="radio" id="unfinished" checked="checked" name="status_rad" value="unfinished" />
+<input type="radio" id="unfinished" name="status_rad" value="unfinished"/>
 
-<input name="Tstatus" id="status" type="hidden" value="unfinished">
+<input name="Tstatus" id="status" type="hidden" value=<%=today.getStatus()%>>
 <input name="Tplan" type ="hidden" value=<%=today.getPlanid()%>>
 <input name="Ttask" type ="hidden" value=<%=today.getTaskid()%>>
 <input name="TCid" type="hidden" value=<%=cwid %>>
 <input name="Tcheck" type="hidden" value="today">
-<input type="submit" onclick="getstatus()">
+<input type="submit" onclick="getstatus()" style="display:block">
 </form>
 </td>
-<td>
+<td width="50%">
 <form action = "DayTaskServlet" method ="post" name="form2">
 Content <input  type="text" style = "display:block" value=<%=nextCon %>>
 Spent time<input  type="text" style = "display:block" value = <%=nextSep %>>
-Progress <input  type="text" style = "display:block" value =<%=nextWei %>> 
-Status <input  type="text" style = "display:block" value=<%=nextSta%>> 
+Progress<div><input  type="text" value =<%=nextWei %>>%</div>
+<%-- Status <input  type="text" style = "display:block" value=<%=nextSta%>>  --%>
+Finished
+<input type="radio" id="finished_next" name="status_rad" value="finished" />
+Unfinished
+<input type="radio" id="unfinished_next" name="status_rad" value="unfinished"/>
+
+<input name="Tstatus" id="status_next" type="hidden" value=<%=nextSta %>>
 <input name="TCid" type="hidden" value=<%=cwid %>>
 <input name="Tcheck" type="hidden" value="tomor">
 <input name="Tplan" type ="hidden" value=<%=today.getPlanid()%>>
 <input name="Ttask" type ="hidden" value=<%=tomor.getTaskid()%>>
-<input type="submit" >
+<input type="submit" onclick="getstatus_next()" style="display:block">
 
 </form>
 </td>
@@ -207,9 +213,34 @@ Status <input  type="text" style = "display:block" value=<%=nextSta%>>
 </body>
 
 <script>
+$(document).ready( function(){
+	if(document.getElementById('status').value=="finished"){
+		document.getElementById('finished').checked = "checked";
+	}else{
+		document.getElementById('unfinished').checked = "checked";
+	}
+	
+	if(document.getElementById('status_next').value=="finished"){
+		document.getElementById('finished_next').checked = "checked";
+	}else{
+		document.getElementById('unfinished_next').checked = "checked";
+	}
+});
+</script>
+
+<script>
 function getstatus(){
-	if(document.getElementById('finished').checked = "checked"){
+	if(document.getElementById('finished').checked){
 		document.getElementById('status').value = 'finished';
+	}else {
+		document.getElementById('status').value = 'unfinished';
+	}
+}
+function getstatus_next(){
+	if(document.getElementById('finished_next').checked){
+		document.getElementById('status_next').value = 'finished_next';
+	}else {
+		document.getElementById('status_next').value = 'unfinished_next';
 	}
 }
 </script>
