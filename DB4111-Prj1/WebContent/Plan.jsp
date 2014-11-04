@@ -72,19 +72,31 @@
 	request.getAttribute("tomor");
 	String cwid = (String)request.getAttribute("cwid");
 %>
-<div style='padding:10px; color:black; font-size:15px; font-family: Courier New'>
+<div style='padding:10px; color:black; font-size:25px; color:gray; font-weight:bold; font-family: Courier New'>
 <%=courwork.getCoursename() %></div>
-<div style='padding:10px; color:black; font-size:15px; font-family: Courier New'>
+<div style='padding:10px; color:black; font-size:20px; font-weight:bold; font-family: Courier New'>
 <%=courwork.getName() %></div>
-<div style='padding:10px; color:black; font-size:15px; font-family: Courier New'>
-Release Date: <%=courwork.getRelDate() %> &nbsp; Due Date: <%=courwork.getDueDate() %></div>
-<div style='padding:10px; color:black; font-size:15px; font-family: Courier New'>
-Link: <a href=<%=courwork.getLink() %>><%=courwork.getLink() %></a></div>
+<table border="1" cellpadding="10" cellspacing="2" width="80%">
+<tr style='padding:10px; color:black; font-size:15px; font-family: Courier New'>
+<td width = "40%">Release Date: <%=courwork.getRelDate() %></td>
+<td width = "40%">Due Date: <%=courwork.getDueDate() %></td>
+</tr>
+</table>
+<%-- <div style='padding:10px; color:black; font-size:15px; font-family: Courier New'>
+Release Date: <%=courwork.getRelDate() %> &nbsp; Due Date: <%=courwork.getDueDate() %></div> --%>
+<div style='padding:10px; color:black; font-size:15px; font-family: Courier New; font-weight:bold'>Link: </div>
+<a href=<%=courwork.getLink() %>><%=courwork.getLink() %></a>
 
 <div style='padding:10px; color:black; font-size:15px; font-family: Courier New; font-weight:bold'>
 Plan</div>
-<div style='padding:10px; color:black; font-size:15px; font-family: Courier New'>
-Start Date: <%=plan.getStdate()%>  &nbsp; End Date: <%=plan.getEddate()%></div>
+<table border="1" cellpadding="10" cellspacing="2" width="80%">
+<tr style='padding:10px; color:black; font-size:15px; font-family: Courier New'>
+<td width = "40%">Start Date: <%=plan.getStdate()%></td>
+<td width = "40%">End Date: <%=plan.getEddate()%></td>
+</tr>
+</table>
+<%-- <div style='padding:10px; color:black; font-size:15px; font-family: Courier New'>
+Start Date: <%=plan.getStdate()%>  &nbsp; End Date: <%=plan.getEddate()%></div> --%>
 
 
 <div style='padding:10px; color:black; font-size:15px; font-family: Courier New; font-weight:bold'>
@@ -108,8 +120,8 @@ for (int i=0; i<msl.size();i++){
 }
 %>
 <div id = "chartcontainer"></div>
-<input type="button" value="New"  onclick="location.href='addMstone.jsp?cwid='+<%=cwid %>+'&planid='+<%=plan.getPlanid() %>">
-
+<input type="button" value="New Milestone"  onclick="location.href='addMstone.jsp?cwid='+<%=cwid %>+'&planid='+<%=plan.getPlanid() %>" style="height:60px;width:150px; text-align:center;margin:0 0 10px 40px;font-size:12px;background:#6292bb;color:white;">
+<br/><br/>
 <%
  try{
    String filename = request.getRealPath("data.json");
@@ -137,7 +149,7 @@ for (int i=0; i<msl.size();i++){
 }
 %>
 
-<div style='padding:10px; color:black; font-size:15px; font-family: Courier New; font-weight:bold'>Daily Tasks<%=request.getContextPath()%></div>
+<div style='padding:10px; color:black; font-size:15px; font-family: Courier New; font-weight:bold'>Daily Tasks</div>
 
 <%
 String nextCon;
@@ -167,13 +179,13 @@ if(tomor.isEmpty()){
  <td colspan = "2">Plan for Tomorrow</td>
  </tr> --%>
 
-<table border="1" cellpadding="10" cellspacing="2" width = 100%>
+<table border="1" cellpadding="10" cellspacing="2" width = 80%>
 <tr>
- <td width="50%">Daily Task: <%=today.getDate()%> </td>
- <td width="50%">Plan for Tomorrow</td>
+ <td width="40%">Daily Task: <%=today.getDate()%> </td>
+ <td width="40%">Plan for Tomorrow</td>
 </tr>
 <tr>
-<td width="50%">
+<td width="40%">
 <form action = "DayTaskServlet" method ="post" name="form1" >
 Content<input name="Tcontent" value=<%=today.getContent()%> type="text" style = "display:block">
 Spent time<input name="Tspentime" value = <%=today.getSpend()%> type ="text" style = "display:block">
@@ -192,7 +204,7 @@ Unfinished
 <input type="submit" onclick="getstatus()" style="display:block">
 </form>
 </td>
-<td width="50%">
+<td width="40%">
 <form action = "DayTaskServlet" method ="post" name="form2">
 Content <input  type="text" style = "display:block" value=<%=nextCon %>>
 Spent time<input  type="text" style = "display:block" value = <%=nextSep %>>
@@ -262,7 +274,7 @@ $(document).ready( function(){
 <script type="text/javascript">
 var myChart = new JSChart('chartcontainer', 'line');
 myChart.setDataJSON('data.json');
-myChart.setSize(1000, 500);
+myChart.setSize(1100, 500);
 myChart.setAxisNameX('#Days used for each Milestone');
 myChart.setAxisNameY(' ');
 myChart.setTitle('Milestone Chart');
