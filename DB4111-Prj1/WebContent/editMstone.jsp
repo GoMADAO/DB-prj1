@@ -73,6 +73,7 @@ background: #fc6;
 		
 		 <input name="cwid" value=<%=cwid %> style="visibility:hidden">
 		<input name="planid" value=<%=plid %> style="visibility:hidden"> 
+		<input name="mstid" value=<%=idnum %> style="visibility:hidden"> 
 		<!-- 取消注释！！传值进来！ -->
 		<input type="submit" onclick="confirm()" style="color:gray; margin:10px 10px 10px 0px; font-size: 18px;display:block;margin:-6px 0 0 0">
 </form>
