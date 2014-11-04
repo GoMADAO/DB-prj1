@@ -97,7 +97,10 @@ Date date=plan.getStdate();
 <%
 
 for (int i=0; i<msl.size();i++){
-	out.print("<a href=\"#\" class=\"css3-button css3-button_blue-g\" id=\"blk"
+	out.print("<a href=\"editMstone.jsp?mstid="+msl.get(i).getMstoneid()
+			+"&planid="+plan.getPlanid()+"&mstwght="+msl.get(i).getWeight()
+			+"&cwid="+cwid+"&mstddl="+msl.get(i).getDeadline()+"&mstdesc="+msl.get(i).getDesc()
+			+"\" class=\"css3-button css3-button_blue-g\" id=\"blk"
 		+msl.get(i).getMstoneid()+"\" data-tooltip=\"Weight: "
 		+msl.get(i).getWeight()+"%\">Milestone"
 		+msl.get(i).getMstoneid()+"</a>");

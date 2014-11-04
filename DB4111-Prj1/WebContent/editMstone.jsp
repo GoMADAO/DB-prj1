@@ -44,25 +44,25 @@ background: #fc6;
 </head>
 
 <body>
-<%-- <!-- 要传过来的值！！ -->
+
 <% String ddl = (String)request.getParameter("mstddl");%>
 <% String desc = (String)request.getParameter("mstdesc");%>
 <% String wght = (String)request.getParameter("mstwght");%>
 <% String idnum = (String)request.getParameter("mstid");%>
 <% String plid = (String)request.getParameter("planid");%>
-<% String cwid = (String)request.getParameter("cwid");%> --%>
-
-<!-- 测试用的！！ -->
+<% String cwid = (String)request.getParameter("cwid");%> 
+<%-- <!-- 要传过来的值！！ -->
+<%-- <!-- 测试用的！！ -->
 <%String ddl ="11-05-2014";%>
 <%String desc ="test description"; %>
 <%String wght = "30"; %>
 <%String idnum = "37"; %>
-<%-- <%String cwid = "" %>;
+<%String cwid = "" %>;
 <%String plid = "" %>; --%>
 
 
 <h1 style="color:#216fa0">Milestone <%=idnum %></h1>
-<form action="CourseworkServlet" method="post" name="form1">
+<form action="MstoneServlet" method="post" name="form1">
 		<div style="width:630px">Deadline: <%=ddl %></div>
 		<div style="color:gray">Milestone Weight (0-100%)</div>
 		<div id="slider"></div>
@@ -70,9 +70,11 @@ background: #fc6;
 		<textarea id="desc" name="descinput" class="fn setTip" style="width:630px; height:200px; display:block;"><%=desc %></textarea>
 		<input name="mweight" id="transW" style="visibility:hidden">
 		<input name="desc" id="transD" style="visibility:hidden">
+		
+		 <input name="cwid" value=<%=cwid %> style="visibility:hidden">
+		<input name="planid" value=<%=plid %> style="visibility:hidden"> 
+		<input name="mstid" value=<%=idnum %> style="visibility:hidden"> 
 		<!-- 取消注释！！传值进来！ -->
-		<%-- <input name="cwid" value=<%=cwid %> style="visibility:hidden">
-		<input name="planid" value=<%=plid %> style="visibility:hidden"> --%>
 		<input type="submit" onclick="confirm()" style="color:gray; margin:10px 10px 10px 0px; font-size: 18px;display:block;margin:-6px 0 0 0">
 </form>
 </body>

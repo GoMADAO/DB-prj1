@@ -54,6 +54,13 @@ public class MStoneBean {
 		msl.setMStoneList(msarr);
 		return msl;
 	}
+	public void upMstone(String mstoneid, String weight, String desc){
+		String sql = "update mstone set weight = "+weight+", MILESTONE_DESC='"+desc
+				+"' where MILESTONE_ID = "+mstoneid;
+		System.out.println(sql);
+		conn.getConn();
+		conn.doUpdate(sql);
+	}
 	
 	public MStoneList newMstone(String planid, String deadline, String weight, String desc){
 		String[] ddl = deadline.split("\\,");
@@ -102,15 +109,11 @@ public class MStoneBean {
 		return msl;
 	}
 	
-	public void upMileStone(){
-		
-	}
+
 	
 	public static void main(String[] args){
-		//MStoneBean msb =new MStoneBean();
-		DBConn con = new DBConn();
-		String sql = "{? = call getmstoneseq()}";
-		String s = con.doFunction(sql);
-		System.out.println(s);
+		MStoneBean msb =new MStoneBean();
+		String mstoneid="69";
+		msb.upMstone( mstoneid,  "25",  "reading");
 	}
 }

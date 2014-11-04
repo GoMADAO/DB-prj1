@@ -69,4 +69,14 @@
     <servlet-name>DayTaskServlet</servlet-name>
     <url-pattern>/DayTaskServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MstoneServlet</display-name>
+    <servlet-name>MstoneServlet</servlet-name>
+    <servlet-class>cs4111.MstoneServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MstoneServlet</servlet-name>
+    <url-pattern>/MstoneServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
