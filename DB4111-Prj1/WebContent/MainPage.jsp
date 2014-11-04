@@ -75,6 +75,10 @@
  			}
 		}
  		if(hasplan){
+ 			Date recDate = new Date(cwl.get(i).getDueDate().getTime());
+ 			Date date = new Date();
+ 			long delta = (recDate.getTime()-date.getTime());
+ 			if(delta>=0){
  %>
  <td width="12%" align="center"><a href="<%=request.getContextPath()%>/CourseworkServlet?courseworkid=<%= cwl.get(i).getWorkId()%>"><%= cwl.get(i).getName()%></a>
  <%}else{ %>
@@ -88,6 +92,7 @@
  <td width = "25%"><a href=<%=request.getContextPath()+"/addPlan.jsp?cwid="+cwl.get(i).getWorkId()+"&cwname="+cwl.get(i).getCoursename()%>>Add Plan</a></td>
  <%}else{%>
  <td width = "25%">delete plan</td>
+ <%} %>
   <%}%>
   <%}%>
  </tr>
