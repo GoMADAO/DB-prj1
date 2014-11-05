@@ -59,5 +59,67 @@ public class statBean {
 		return ttmod;
 	}
 	
+	public String getNumofReg(String courseid){
+		ResultSet rs =null;
+		String sql = "select count(*) as numofreg from reg_for where course_id ="+courseid;
+		conn.getConn();
+		rs = conn.doSelect(sql);
+		String s = new String();
+		try {
+			if(rs.next()){
+				s = rs.getString("numofreg");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return s;
+	}
+	public String getNumofPlan(String courseid){
+		ResultSet rs =null;
+		String sql = "select count(*) as numofplan from is_sche s join is_assn a "
+				+ "on s.coursework_id = a.coursework_id "
+				+ "where course_id ="+courseid;
+		conn.getConn();
+		rs = conn.doSelect(sql);
+		String s = new String();
+		try {
+			if(rs.next()){
+				s = rs.getString("numofplan");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return s;
+	}
+	public String getAvgProg(String courseid){
+		ResultSet rs =null;
+		String sql = "select case when avg(t.mw) is null then 0 else  avg(t.mw) end"
+				+ " as avgprog from ( select plan_id, max(weight) as mw"
+				+ " from day_task group by plan_id ) t join is_sche s"
+				+ " on s.plan_id = t.plan_id join is_assn a on s.coursework_id = a.coursework_id"
+				+ " where a.course_id ="+ courseid;
+		
+		conn.getConn();
+		rs = conn.doSelect(sql);
+		String s = new String();
+		try {
+			if(rs.next()){
+				s = rs.getString("avgprog");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return s;
+	}
+	public static void main(String[] args){
+		String s = "4111";
+		statBean sb = new statBean();
+		System.out.println(sb.getAvgProg(s));
+		System.out.println(sb.getNumofPlan(s));
+		System.out.println(sb.getNumofReg(s));
+	}
 	
 }
