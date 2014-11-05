@@ -101,6 +101,7 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+
     <display-name>statServlet</display-name>
     <servlet-name>statServlet</servlet-name>
     <servlet-class>cs4111.statServlet</servlet-class>
@@ -108,5 +109,15 @@
   <servlet-mapping>
     <servlet-name>statServlet</servlet-name>
     <url-pattern>/statServlet</url-pattern>
+    </servlet-mapping>
+<servlet>
+    <display-name>PlanDelServlet</display-name>
+    <servlet-name>PlanDelServlet</servlet-name>
+    <servlet-class>cs4111.PlanDelServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PlanDelServlet</servlet-name>
+    <url-pattern>/PlanDelServlet</url-pattern>
+
   </servlet-mapping>
 </web-app>
