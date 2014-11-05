@@ -24,8 +24,10 @@ public class statBean {
 	
 	public String getTotalTime(String cwid, String stuid){
 		ResultSet rs =null;
-		String sql = "select sum(t.spent_time) as totalTime from day_task t, is_sche s where s.student_id="
-						+stuid+" and s.plan_id = t.plan_id and s.coursework_id = "+cwid;
+		String sql = "select sum(t.spent_time) as totalTime from day_task t,"
+				+ " is_sche s where s.student_id='"
+						+stuid+"' and s.plan_id = t.plan_id and s.coursework_id = "+cwid;
+		System.out.println(sql);
 		conn.getConn();
 		rs = conn.doSelect(sql);
 		String ttime = new String();
@@ -43,9 +45,10 @@ public class statBean {
 	public String getModif(String stuid, String plid){
 		ResultSet rs =null;
 		String sql = "select sum(m.times_of_modif) as totalMod from mstone m, "
-						+ "is_sche i where i.student_id ="+stuid+" and "
+						+ "is_sche i where i.student_id ='"+stuid+"' and "
 						+ "i.plan_id = m.plan_id and m.plan_id = "+plid;
 		conn.getConn();
+		System.out.println(sql);
 		rs = conn.doSelect(sql);
 		String ttmod = new String();
 		try {
@@ -120,6 +123,8 @@ public class statBean {
 		System.out.println(sb.getAvgProg(s));
 		System.out.println(sb.getNumofPlan(s));
 		System.out.println(sb.getNumofReg(s));
+		System.out.println(sb.getModif("yf2338", "7"));
+		System.out.println(sb.getTotalTime("4111" ,"yf2338"));
 	}
 	
 }

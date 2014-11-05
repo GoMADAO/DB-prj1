@@ -42,10 +42,25 @@ public class statServlet extends HttpServlet {
         String cwid=(String)request.getParameter("cwid");  
         String stuid=(String)request.getParameter("stuid");
         String plid=(String)request.getParameter("plid");
-        
+//        cwid = "4111";
+//        stuid="yf2338";
+//        plid="7";
         statBean stb = new statBean();
+        String TotalTime = stb.getTotalTime(cwid, stuid);
+        String Modif = stb.getModif(stuid, plid);
+        String NumofReg = stb.getNumofReg(cwid);
+        String NumofPlan = stb.getNumofPlan(cwid);
+        String AvgProg = stb.getAvgProg(cwid);
+        stb.closeDBconn();
         
-        
+        request.setAttribute("TotalTime", TotalTime);
+        request.setAttribute("Modif", Modif);
+        request.setAttribute("NumofReg", NumofReg);
+        request.setAttribute("NumofPlan", NumofPlan);
+        request.setAttribute("AvgProg", AvgProg);
+        String forward = "statistics.jsp";
+        RequestDispatcher rd=request.getRequestDispatcher(forward);
+        rd.forward(request,response);  
 	}
 
 }
