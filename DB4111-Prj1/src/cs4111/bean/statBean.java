@@ -99,7 +99,7 @@ public class statBean {
 				+ " as avgprog from ( select plan_id, max(weight) as mw"
 				+ " from day_task group by plan_id ) t join is_sche s"
 				+ " on s.plan_id = t.plan_id join is_assn a on s.coursework_id = a.coursework_id"
-				+ " where a.course_id"+ courseid;
+				+ " where a.course_id ="+ courseid;
 		
 		conn.getConn();
 		rs = conn.doSelect(sql);
@@ -114,6 +114,12 @@ public class statBean {
 		}
 		return s;
 	}
-	
+	public static void main(String[] args){
+		String s = "4111";
+		statBean sb = new statBean();
+		System.out.println(sb.getAvgProg(s));
+		System.out.println(sb.getNumofPlan(s));
+		System.out.println(sb.getNumofReg(s));
+	}
 	
 }
