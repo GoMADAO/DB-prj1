@@ -39,7 +39,11 @@ public class statServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");  
         response.setCharacterEncoding("UTF-8");   
-        String cwid=request.getParameter("cwid");  
+        String cwid=(String)request.getParameter("cwid");  
+        String stuid=(String)request.getParameter("stuid");
+        String plid=(String)request.getParameter("plid");
+        
+        statBean stb = new statBean();
         
         
 	}

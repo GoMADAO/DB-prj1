@@ -72,13 +72,14 @@
 	request.getAttribute("tomor");
 	String stuid = (String)session.getAttribute("stuid");
 	String cwid = (String)request.getAttribute("cwid");
+	String plid = String.valueOf(plan.getPlanid());
 %>
 <div style='padding:10px; color:black; font-size:25px; color:gray; font-weight:bold; font-family: Courier New'>
 <%=courwork.getCoursename() %></div>
 <div style='padding:10px; color:black; font-size:20px; font-weight:bold; font-family: Courier New;'>
 <%=courwork.getName() %></div>
 <form action="statServlet" method="post" name="form1">
-<input type="hidden" value=cwid name="cwid">
+<input type="hidden" value=<%=cwid%> name="cwid"> <input type="hidden" value=<%=stuid%> name="stuid"> <input type="hidden" value=<%=plid%> name="plid">
 <input type="submit" style="margin:10px" value="Statistics">
 </form><br/></br>
 <table border="1" cellpadding="10" cellspacing="2" width="80%">
