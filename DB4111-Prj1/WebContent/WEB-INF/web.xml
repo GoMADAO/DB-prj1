@@ -99,4 +99,14 @@
     <servlet-name>EditMstServlet</servlet-name>
     <url-pattern>/EditMstServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>statServlet</display-name>
+    <servlet-name>statServlet</servlet-name>
+    <servlet-class>cs4111.statServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>statServlet</servlet-name>
+    <url-pattern>/statServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
