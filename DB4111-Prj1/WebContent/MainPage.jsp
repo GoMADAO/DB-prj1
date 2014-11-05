@@ -67,34 +67,49 @@
  <td>Operation</td>
  </tr>
  <%int cid = 0; boolean hasplan = false;
+ String plid="";
    for (int i=0; i<cwl.size(); i++){%>
  <tr> 
 <%		 for(int j=0;j<plist.size();j++){
  			if (cwl.get(i).getWorkId()==plist.get(j).getCWid()){
  				hasplan=true;
+ 				plid = plist.get(j).getPlanid().toString();
  			}
 		}
  		if(hasplan){
  			Date recDate = new Date(cwl.get(i).getDueDate().getTime());
  			Date date = new Date();
- 			long delta = (recDate.getTime()-date.getTime());
- 			if(delta>=0){
+ 			//long delta = (recDate.getTime()-date.getTime());
+ 			//if(delta>=0){
  %>
  <td width="12%" align="center"><a href="<%=request.getContextPath()%>/CourseworkServlet?courseworkid=<%= cwl.get(i).getWorkId()%>"><%= cwl.get(i).getName()%></a>
- <%}else{ %>
- <td width="12%" align="center"><%=cwl.get(i).getName()%></td>
- <%} %>
  <td width="20%" align="center"><%=cwl.get(i).getCoursename()%></td>
  <td width="24%" align="center"><%=cwl.get(i).getRelDate()%></td>
  <td width="30%" align="center"><%=cwl.get(i).getDueDate() %></td>
  <td><a href = <%=cwl.get(i).getLink()%> ><%=cwl.get(i).getLink() %></a></td>
+ <td width = "25%">
+ <form method="post" name ="form1" action=<%=request.getContextPath()+"/PlanDelServlet"%>>
+<input type="hidden" name="cwid" value=<%=cwl.get(i).getWorkId() %>>
+<input type="hidden" name="pid" value=<%=plid%>>
+<input type="submit" value="Delete">
+ </form></td>
+ <%}//}else{ %>
+ 
+ <%//} 
+ %>
+ 
  <%if(!hasplan){%>
+ <td width="12%" align="center"><%=cwl.get(i).getName()%></td>
+ <td width="20%" align="center"><%=cwl.get(i).getCoursename()%></td>
+ <td width="24%" align="center"><%=cwl.get(i).getRelDate()%></td>
+ <td width="30%" align="center"><%=cwl.get(i).getDueDate() %></td>
+ <td><a href = <%=cwl.get(i).getLink()%> ><%=cwl.get(i).getLink() %></a></td>
  <td width = "25%"><a href=<%=request.getContextPath()+"/addPlan.jsp?cwid="+cwl.get(i).getWorkId()+"&cwname="+cwl.get(i).getCoursename()%>>Add Plan</a></td>
- <%}else{%>
- <td width = "25%">delete plan</td>
+ <%//}else{%>
+ 
  <%} %>
   <%}%>
-  <%}%>
+ 
  </tr>
  </table>
 </body>

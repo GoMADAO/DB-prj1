@@ -75,6 +75,7 @@ public class LoginServlet extends HttpServlet {
         	PlanList plist = new PlanList();
         	PlanBean plb = new PlanBean();
         	plb.getCurPlan(plist,cwl, stuname);
+        	plb.closeDBconn();
         	
         	HttpSession session = request.getSession();
         	session.setAttribute("stuid", stuname);

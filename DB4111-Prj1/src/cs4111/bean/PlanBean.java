@@ -65,6 +65,22 @@ public class PlanBean {
 		}
 		return pl;
 	}
+	public void delPlanRel(String planid, String stuid){
+		String deltask ="delete from day_task where plan_id ="+planid;
+		String delmstone="delete from mstone where plan_id="+planid;
+		String delsche="delete from is_sche where plan_id="+planid +" and student_id ='"+stuid+"'";
+		String delplan="delete from plan where plan_id="+planid; 
+		System.out.println(deltask);
+		System.out.println(delmstone);
+		System.out.println(delsche);
+		System.out.println(delplan);
+		conn.getConn();
+		conn.doDelete(deltask);
+		conn.doDelete(deltask);
+		conn.doDelete(delsche);
+		conn.doDelete(delplan);
+		
+	}
 	
 	public void getCurPlan(PlanList plist, CourworkList cwl, String stuid){
 		ArrayList<Courwork> courworklist = cwl.getCourworkList();
@@ -101,7 +117,8 @@ public class PlanBean {
 	
 	public static void main(String[] args){
 		PlanBean p = new PlanBean();
-		Plan pl = new Plan();
+		//Plan pl = new Plan();
+		p.delPlanRel("1", "1");
 		//p.insPlan(pl,"1","1");
 	}
 }
