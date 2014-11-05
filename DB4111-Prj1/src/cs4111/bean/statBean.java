@@ -2,10 +2,7 @@ package cs4111.bean;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-import cs4111.model.Plan;
-import cs4111.model.Stat;
 import cs4111.util.DBConn;
 
 public class statBean {
@@ -25,26 +22,42 @@ public class statBean {
 		}
 	}
 	
-	public Stat getStat(String cwid){
+	public String getTotalTime(String cwid, String stuid){
 		ResultSet rs =null;
-		String sql ="SELECT count(r.student_id) as num,a.course_id,c.course_name, a.coursework_id "
-				+ "FROM is_assn a, reg_for r, course c WHERE a.coursework_id="+cwid+
-				" AND a.course_id=r.course_id AND c.course_id = a.course_id";
+		String sql = "select sum(t.spent_time) as totalTime from day_task t, is_sche s where s.student_id="
+						+stuid+" and s.plan_id = t.plan_id and s.coursework_id = "+cwid;
 		conn.getConn();
 		rs = conn.doSelect(sql);
-		Stat stat = new Stat();
+		String ttime = new String();
 		try {
 			if(rs.next()){
-				stat.setSTUnum(Integer.parseInt(rs.getString("num")));
-				stat.setCSid(Integer.parseInt(rs.getString("course_id")));
-				stat.setCSname(rs.getString("course_name"));
-				stat.setCWid(rs.getString("coursework_id"));
+				ttime = rs.getString("totalTime");
 			}
-			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return stat;
+		return ttime;
 	}
+	
+	public String getModif(String stuid, String plid){
+		ResultSet rs =null;
+		String sql = "select sum(m.times_of_modif) as totalMod from mstone m, "
+						+ "is_sche i where i.student_id ="+stuid+" and "
+						+ "i.plan_id = m.plan_id and m.plan_id = "+plid;
+		conn.getConn();
+		rs = conn.doSelect(sql);
+		String ttmod = new String();
+		try {
+			if(rs.next()){
+				ttmod = rs.getString("totalMod");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ttmod;
+	}
+	
+	
 }

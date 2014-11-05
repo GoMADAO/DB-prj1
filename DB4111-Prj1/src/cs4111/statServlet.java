@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cs4111.bean.statBean;
-import cs4111.model.Stat;
 
 /**
  * Servlet implementation class statServlet
@@ -42,14 +41,7 @@ public class statServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");   
         String cwid=request.getParameter("cwid");  
         
-        statBean stb = new statBean();
-        Stat sttc = stb.getStat(cwid);
-        stb.closeDBconn();
         
-        String forward = new String("statistics.jsp");
-        request.setAttribute("sttc", sttc);
-        RequestDispatcher rd=request.getRequestDispatcher(forward);
-        rd.forward(request,response);
 	}
 
 }
