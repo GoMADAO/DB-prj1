@@ -62,7 +62,35 @@
         	box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, .5), 0px 0px 2px 3px rgba(147, 147, 147, .25);
 }
 </style>
+<style>
+.bl-table{width:100%;}
+.bl-table td,.bl-table th{padding:10px; line-height:20px;color:#666;}
+.bl-table td{}
+.bl-treven td{ background-color:#F2F2F2;}
+.bl-table .tl{ text-align:left;}
+.bl-table .tc{ text-align:center;}
+.bl-table .tr{ text-align:center;}
+.bl-table caption{ padding:8px 0;font-weight:700;}
+.bl-table .checkbox{ width:24px;}
+.tdeven{ background:#EFEFEF}
+.bl-table tbody tr:hover{ background:#FFF9EE; transition:background-color .1s ease-in .1s;}
 
+/*只有上边线的table*/
+.bl-table-li{}
+.bl-table-li td{border-top:#ddd solid 1px;}
+/*边线table*/
+.bl-table-brd{}
+.bl-table-brd td,.bl-table-brd th{border:#ddd solid 1px;}
+/*只有外边框和上边线的table*/
+.bl-table-brdli{	border:#ddd solid 1px;}
+.bl-table-brdli td{	border-top:#ddd solid 1px;}
+
+.tfoot{ height:20px; line-height:20px; padding:10px; border:1px solid #ddd; margin-top:-1px; background:#EFEFEF;}
+.tfoot .bl-pagelist{ padding:0; text-align:right;}
+
+.bl-table .fn-btn{padding:2px 8px; font-weight:100;font-size:12px;}
+.bl-table button.fn-btn-smaller,.bl-table input.fn-btn-smaller{padding-left:6px; padding-right:6px;}
+</style>
 </head>
 <body>
 <% request.getAttribute("courwork");
@@ -185,7 +213,7 @@ if(tomor.isEmpty()){
  <td colspan = "2">Plan for Tomorrow</td>
  </tr> --%>
 
-<table border="1" cellpadding="10" cellspacing="2" width = 80%>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="bl-table bl-table-brdli">
 <tr>
  <td width="40%">Daily Task: <%=today.getDate()%> </td>
  <td width="40%">Plan for Tomorrow</td>
