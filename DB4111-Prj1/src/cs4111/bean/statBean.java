@@ -64,13 +64,14 @@ public class statBean {
 	
 	public String getNumofReg(String courseid){
 		ResultSet rs =null;
-		String sql = "select count(*) as numofreg from reg_for where course_id ="+courseid;
+		String sql = "select count(*) as numofreg from reg_for where course_id =4111";
 		conn.getConn();
 		rs = conn.doSelect(sql);
 		String s = new String();
 		try {
 			if(rs.next()){
 				s = rs.getString("numofreg");
+				System.out.printf(sql);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

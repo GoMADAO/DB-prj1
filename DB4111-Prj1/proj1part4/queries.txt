@@ -1,0 +1,86 @@
+QUERY1
+-Query:
+SELECT deref(t.staff_ref).concentration FROM course c, teaches t WHERE c.course_id=4111 AND c.course_id = t.course_id;
+
+-Execution result:
+DEREF(T.STAFF_REF).CONCENTRATION
+---------------------------------------------------------
+Database systems, query processing and optimization
+
+-Explanation:
+This query demonstrates that we can store attributes of objects 
+we construct and easily reconstruct the data once we reconstruct 
+the object from the database. The attributes of objects are 
+closer to the real world, which are more understandable. And to 
+access the specialized attribute CONCENTRATION of the entity PROF, 
+i.e. professor, for a specific course, we do not have to reference 
+some staff table first. We can just directly find the professor 
+info by TEACHES table.
+
+===============================================================
+QUERY2
+-Query:
+SELECT value(p).type_is() FROM prof_tab p WHERE p.prof_id = 1;
+SELECT value(t).type_is() FROM ta_tab t WHERE t.staff_id = 12;
+
+CREATE TABLE staff_tab OF staff(staff_id PRIMARY KEY);
+INSERT INTO staff_tab VALUES(staff(100,’John Smith’,’Mon 1-2pm’,’CS lounge’));
+SELECT value(s).type_is() FROM staff_tab s WHERE s.staff_id = 100;
+
+-Execution result:
+VALUE(P).TYPE_IS()
+---------------------------------------------------------
+staff is PROFESSOR
+
+VALUE(T).TYPE_IS()
+---------------------------------------------------------
+staff as a TA
+
+VALUE(S).TYPE_IS()
+---------------------------------------------------------
+staff
+
+-Explanation:
+This query demonstrates that there is the inheritance in the 
+object-oriented relational schema, and overriding of method of 
+the super type. The super type is STAFF and the sub types are 
+PROF and TA, which both have the super method TYPE_IS, while 
+function differently. the inheritance and overriding easily help 
+us reduce redundant tables in database, even the sub types are 
+slightly different.
+
+===============================================================
+QUERY3
+-Query:
+SELECT DEREF(t.staff_ref) FROM reg_for r, course c, teaches t WHERE c.course_id = r.course_id AND r.student_id = 'yf2338' AND t.course_id = c.course_id;
+
+SELECT deref(a.staff_ref) FROM course c, assists a WHERE c.course_id = 4111 AND c.course_id=a.course_id;
+
+-Execution result:
+DEREF(T.STAFF_REF)(STAFF_ID, NAME, OFFICE_HOUR, LOCATION, PROF_ID, CONCENTRATION
+---------------------------------------------------------
+PROF(1, 'Mihalis Yannakakis', 'Mon 4-6pm', '455 CSB', 1, 'Algorithms, complexity theory, combinatorial optimization')
+PROF(2, 'Kenneth A. Ross', 'Mon 2:30-3:30pm', '510 CSB', 2, 'Database systems, query processing and optimization')
+PROF(3, 'Steven K. Feiner', 'Mon 1-2pm, Wed 1-2pm', '609 CEPSR', 3, 'Human-computer interaction, augmented reality and virtual environments')
+PROF(4, 'Shree K. Nayar', 'Wed 2-3pm', '621 CEPSR', 4, 'Computer Vision, Computational Imaging, Computer Graphics, Robotics')
+DEREF(T.STAFF_REF)(STAFF_ID, NAME, OFFICE_HOUR, LOCATION, PROF_ID, CONCENTRATION
+---------------------------------------------------------
+
+DEREF(A.STAFF_REF)(STAFF_ID, NAME, OFFICE_HOUR, LOCATION, TA_ID)
+---------------------------------------------------------
+TA(15, 'Yash Parikh', 'Tue, 3-4pm', 'TA room', 5)
+TA(16, 'Pranita Dewan', 'Tue 12-1pm', 'TA room', 6)
+TA(17, 'Muyuan Liu', 'Mon 10-11am', 'TA room', 7)
+TA(18, 'Nimai Buch', 'Tue 2-3pm, Fri 3-4pm', 'TA room', 8)
+
+-Explanation:
+This query demonstrates that we use reference in the relation 
+table ASSISTS and TEACHES, where we have column objects TA and 
+PROF. Also, the reference is a scoped reference, we reference 
+STAFF which must be in the table of TA_TAB or PROF_TAB, that 
+consist of sub types of staff, TA and PROF. It proves that 
+object-oriented schema is more convenient for query other entities, 
+only by de-referencing, instead of more queries to visit other 
+tables in the relational only schema. The above queries easily 
+query out all professors of a specific student°Øs all courses 
+& all TAs for a specific course.
